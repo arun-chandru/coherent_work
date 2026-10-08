@@ -1,0 +1,1079 @@
+{
+  "status": "Certified shot budget; no experimental counts supplied",
+  "arithmetic": "FLINT Arb 192 bits; exact rational implemented weights",
+  "certificate_path": "hot_finite_count_followup_certificate.json",
+  "certificate_sha256": "2e39404b02b648b12f5d3427bd90b3ea65e5929e5080ba47fa4eb9e7d866e768",
+  "statistics_checker_sha256": "31ba3f0b575cb030f7d85fa37ae04fc1d817b0b34ce8c85e35dad57420d85fdc",
+  "parameters": {
+    "r": "1/200",
+    "s": "128",
+    "cap": "1",
+    "horizon": "32",
+    "samples": 256,
+    "mesh": "1/8",
+    "source_qmax": "4",
+    "source_energy_cut": "20",
+    "initial_count": 64,
+    "final_count": 1260,
+    "initial_barrier": 40000,
+    "final_barrier": 160000
+  },
+  "lambda": "25600.0000000000000000000000000000000000000000000000000000",
+  "alpha_exact": "1/20",
+  "epsilon_stat_exact": "1/200",
+  "source_target_ball": "[0.4040654187 +/- 6.25e-11]",
+  "implemented_weight_sum": "[1.95959365427766193534460617688629338909930832635097885941 +/- 7.76e-58]",
+  "weight_rounding_bias_upper": "[5.34943122567659484194847050560549287679663222194138911847e-23 +/- 5.82e-81]",
+  "scaled_actual_weighted_mean_upper_D": "[0.403599390000030862211186847724408102618341359705056054929 +/- 2.52e-58]",
+  "required_preparation_expression_ball": "[5999715690.1165289807540822591112771429437234178867404178 +/- 3.39e-47]",
+  "preparations": 5999715692,
+  "fresh_pure_ancilla_uses": 5999715692,
+  "ramsey_sequences": 5999715692,
+  "ancilla_readouts": 5999715692,
+  "time_label_draws": 5999715692,
+  "failure_probability_upper": "[0.0499999999420981101426375146856538317632615106164124570114 +/- 4.61e-59]",
+  "point_specific_direct_systematic_upper": "[0.000479010748043789855581208603515494615615479509445750595257 +/- 3.90e-61]",
+  "conservative_systematic_upper_from_serialized_enclosures": "[0.0949324796357384739396895708393263309331102510512113142985 +/- 1.13e-59]",
+  "point_specific_direct_total_error_upper": "[0.00547901074804378985558120860351549461561547950944575059526 +/- 1.53e-60]",
+  "conservative_total_error_upper": "[0.0999324796357384739396895708393263309331102510512113142985 +/- 3.44e-59]",
+  "direct_total_below_quarter_target": true,
+  "conservative_total_below_quarter_target": true,
+  "pooled_acceptance_probability_enclosure": "[8.045e-6 +/- 3.43e-10]",
+  "expected_success_count_enclosure": "[4.827e+4 +/- 2.49]",
+  "mean_dimensionless_time_per_trial": "[2.61666882016427894295979168820629587539417835847963332038 +/- 4.00e-57]",
+  "max_dimensionless_time_per_trial": "31.9375000000000000000000000000000000000000000000000000000",
+  "max_total_control_duration_in_hbar_over_Ephys0": "[4790397.99783125000000000000000000000000000000000000000000 +/- 7.85e-51]",
+  "expected_total_control_duration_in_hbar_over_Ephys0": "[392481.72452766875979852587791956211741993321457042643237 +/- 3.98e-51]",
+  "equal_shot_aggregate_bernstein_preparation_bound": 33807244800,
+  "sampling_design": {
+    "weight_denominator": 1208925819614629174706176,
+    "probability_denominator": 2369003364609248739079742,
+    "nodes": [
+      {
+        "time_exact": "1/16",
+        "probability_numerator": 96161518170188889060430
+      },
+      {
+        "time_exact": "3/16",
+        "probability_numerator": 95911379971821929371795
+      },
+      {
+        "time_exact": "5/16",
+        "probability_numerator": 95412665020660317174314
+      },
+      {
+        "time_exact": "7/16",
+        "probability_numerator": 94668483154181390976914
+      },
+      {
+        "time_exact": "9/16",
+        "probability_numerator": 93683466621181804096233
+      },
+      {
+        "time_exact": "11/16",
+        "probability_numerator": 92463731426422463295144
+      },
+      {
+        "time_exact": "13/16",
+        "probability_numerator": 91016826375371592930242
+      },
+      {
+        "time_exact": "15/16",
+        "probability_numerator": 89351670312646916973612
+      },
+      {
+        "time_exact": "17/16",
+        "probability_numerator": 87478478161248722940838
+      },
+      {
+        "time_exact": "19/16",
+        "probability_numerator": 85408676476724954000765
+      },
+      {
+        "time_exact": "21/16",
+        "probability_numerator": 83154809329891577791131
+      },
+      {
+        "time_exact": "23/16",
+        "probability_numerator": 80730435422605790924450
+      },
+      {
+        "time_exact": "25/16",
+        "probability_numerator": 78150017422412626232256
+      },
+      {
+        "time_exact": "27/16",
+        "probability_numerator": 75428804572821204466896
+      },
+      {
+        "time_exact": "29/16",
+        "probability_numerator": 72582709695795874376878
+      },
+      {
+        "time_exact": "31/16",
+        "probability_numerator": 69628181751175007096608
+      },
+      {
+        "time_exact": "33/16",
+        "probability_numerator": 66582075153692352984677
+      },
+      {
+        "time_exact": "35/16",
+        "probability_numerator": 63461517071744481436719
+      },
+      {
+        "time_exact": "37/16",
+        "probability_numerator": 60283773942833759619061
+      },
+      {
+        "time_exact": "39/16",
+        "probability_numerator": 57066118438671070444990
+      },
+      {
+        "time_exact": "41/16",
+        "probability_numerator": 53825698098338135328722
+      },
+      {
+        "time_exact": "43/16",
+        "probability_numerator": 50579406820916991711542
+      },
+      {
+        "time_exact": "45/16",
+        "probability_numerator": 47343760369960717097250
+      },
+      {
+        "time_exact": "47/16",
+        "probability_numerator": 44134776991602657789359
+      },
+      {
+        "time_exact": "49/16",
+        "probability_numerator": 40967864186603597780510
+      },
+      {
+        "time_exact": "51/16",
+        "probability_numerator": 37857712604956765563693
+      },
+      {
+        "time_exact": "53/16",
+        "probability_numerator": 34818197950656433765693
+      },
+      {
+        "time_exact": "55/16",
+        "probability_numerator": 31862291694831801996244
+      },
+      {
+        "time_exact": "57/16",
+        "probability_numerator": 29001981298684781122786
+      },
+      {
+        "time_exact": "59/16",
+        "probability_numerator": 26248200544653076457500
+      },
+      {
+        "time_exact": "61/16",
+        "probability_numerator": 23610770466114325940522
+      },
+      {
+        "time_exact": "63/16",
+        "probability_numerator": 21098351253965875739468
+      },
+      {
+        "time_exact": "65/16",
+        "probability_numerator": 18718405403803945253437
+      },
+      {
+        "time_exact": "67/16",
+        "probability_numerator": 16477172251449841280228
+      },
+      {
+        "time_exact": "69/16",
+        "probability_numerator": 14379653928497853711188
+      },
+      {
+        "time_exact": "71/16",
+        "probability_numerator": 12429612654647227254214
+      },
+      {
+        "time_exact": "73/16",
+        "probability_numerator": 10629579171061971551324
+      },
+      {
+        "time_exact": "75/16",
+        "probability_numerator": 8980872010071242942996
+      },
+      {
+        "time_exact": "77/16",
+        "probability_numerator": 7483627192321432464112
+      },
+      {
+        "time_exact": "79/16",
+        "probability_numerator": 6136837844095948057487
+      },
+      {
+        "time_exact": "81/16",
+        "probability_numerator": 4938403135930425260889
+      },
+      {
+        "time_exact": "83/16",
+        "probability_numerator": 3885185859782820181892
+      },
+      {
+        "time_exact": "85/16",
+        "probability_numerator": 2973077886685588921777
+      },
+      {
+        "time_exact": "87/16",
+        "probability_numerator": 2197072680721534968317
+      },
+      {
+        "time_exact": "89/16",
+        "probability_numerator": 1551343988923922759413
+      },
+      {
+        "time_exact": "91/16",
+        "probability_numerator": 1029329780784807986903
+      },
+      {
+        "time_exact": "93/16",
+        "probability_numerator": 623820475820319632216
+      },
+      {
+        "time_exact": "95/16",
+        "probability_numerator": 327050473319544858699
+      },
+      {
+        "time_exact": "97/16",
+        "probability_numerator": 130791985099730161776
+      },
+      {
+        "time_exact": "99/16",
+        "probability_numerator": 26450169783271825475
+      },
+      {
+        "time_exact": "101/16",
+        "probability_numerator": 5158575655230182095
+      },
+      {
+        "time_exact": "103/16",
+        "probability_numerator": 57873918286099562460
+      },
+      {
+        "time_exact": "105/16",
+        "probability_numerator": 175469248428547771972
+      },
+      {
+        "time_exact": "107/16",
+        "probability_numerator": 348824604722992874693
+      },
+      {
+        "time_exact": "109/16",
+        "probability_numerator": 568914293875516754329
+      },
+      {
+        "time_exact": "111/16",
+        "probability_numerator": 826889997507483847683
+      },
+      {
+        "time_exact": "113/16",
+        "probability_numerator": 1114158969037931897974
+      },
+      {
+        "time_exact": "115/16",
+        "probability_numerator": 1422456654890052989204
+      },
+      {
+        "time_exact": "117/16",
+        "probability_numerator": 1743913151089825418963
+      },
+      {
+        "time_exact": "119/16",
+        "probability_numerator": 2071112987972968078947
+      },
+      {
+        "time_exact": "121/16",
+        "probability_numerator": 2397147821219905295168
+      },
+      {
+        "time_exact": "123/16",
+        "probability_numerator": 2715661695753103660809
+      },
+      {
+        "time_exact": "125/16",
+        "probability_numerator": 3020888639097180858421
+      },
+      {
+        "time_exact": "127/16",
+        "probability_numerator": 3307682431557017585438
+      },
+      {
+        "time_exact": "129/16",
+        "probability_numerator": 3571538490960009194944
+      },
+      {
+        "time_exact": "131/16",
+        "probability_numerator": 3808607898705059258059
+      },
+      {
+        "time_exact": "133/16",
+        "probability_numerator": 4015703680466551275844
+      },
+      {
+        "time_exact": "135/16",
+        "probability_numerator": 4190299538165414621286
+      },
+      {
+        "time_exact": "137/16",
+        "probability_numerator": 4330521308846715092723
+      },
+      {
+        "time_exact": "139/16",
+        "probability_numerator": 4435131500065064888748
+      },
+      {
+        "time_exact": "141/16",
+        "probability_numerator": 4503507319521483315674
+      },
+      {
+        "time_exact": "143/16",
+        "probability_numerator": 4535612678346721402567
+      },
+      {
+        "time_exact": "145/16",
+        "probability_numerator": 4531964702004442926707
+      },
+      {
+        "time_exact": "147/16",
+        "probability_numerator": 4493595329805903295734
+      },
+      {
+        "time_exact": "149/16",
+        "probability_numerator": 4422008623097980496789
+      },
+      {
+        "time_exact": "151/16",
+        "probability_numerator": 4319134433022931020215
+      },
+      {
+        "time_exact": "153/16",
+        "probability_numerator": 4187279101169387503146
+      },
+      {
+        "time_exact": "155/16",
+        "probability_numerator": 4029073880362608600392
+      },
+      {
+        "time_exact": "157/16",
+        "probability_numerator": 3847421768304105719185
+      },
+      {
+        "time_exact": "159/16",
+        "probability_numerator": 3645443443894201858378
+      },
+      {
+        "time_exact": "161/16",
+        "probability_numerator": 3426422985081610366787
+      },
+      {
+        "time_exact": "163/16",
+        "probability_numerator": 3193754028301136842924
+      },
+      {
+        "time_exact": "165/16",
+        "probability_numerator": 2950887003391502481805
+      },
+      {
+        "time_exact": "167/16",
+        "probability_numerator": 2701278044818895124753
+      },
+      {
+        "time_exact": "169/16",
+        "probability_numerator": 2448340140630961404337
+      },
+      {
+        "time_exact": "171/16",
+        "probability_numerator": 2195397035459019142185
+      },
+      {
+        "time_exact": "173/16",
+        "probability_numerator": 1945640353758464818956
+      },
+      {
+        "time_exact": "175/16",
+        "probability_numerator": 1702090355061039561999
+      },
+      {
+        "time_exact": "177/16",
+        "probability_numerator": 1467560675077402848102
+      },
+      {
+        "time_exact": "179/16",
+        "probability_numerator": 1244627345830941618086
+      },
+      {
+        "time_exact": "181/16",
+        "probability_numerator": 1035602325437086057776
+      },
+      {
+        "time_exact": "183/16",
+        "probability_numerator": 842511704485915055617
+      },
+      {
+        "time_exact": "185/16",
+        "probability_numerator": 667078692054603916388
+      },
+      {
+        "time_exact": "187/16",
+        "probability_numerator": 510711420971057004255
+      },
+      {
+        "time_exact": "189/16",
+        "probability_numerator": 374495549847556703302
+      },
+      {
+        "time_exact": "191/16",
+        "probability_numerator": 259191579346757258684
+      },
+      {
+        "time_exact": "193/16",
+        "probability_numerator": 165236742833100346481
+      },
+      {
+        "time_exact": "195/16",
+        "probability_numerator": 92751277651891424872
+      },
+      {
+        "time_exact": "197/16",
+        "probability_numerator": 41548833359699943094
+      },
+      {
+        "time_exact": "199/16",
+        "probability_numerator": 11150727833587813242
+      },
+      {
+        "time_exact": "201/16",
+        "probability_numerator": 803721773940102199
+      },
+      {
+        "time_exact": "203/16",
+        "probability_numerator": 9500947073764099402
+      },
+      {
+        "time_exact": "205/16",
+        "probability_numerator": 36005595166565394777
+      },
+      {
+        "time_exact": "207/16",
+        "probability_numerator": 78876948016162160020
+      },
+      {
+        "time_exact": "209/16",
+        "probability_numerator": 136498317025115253702
+      },
+      {
+        "time_exact": "211/16",
+        "probability_numerator": 207106443882804194380
+      },
+      {
+        "time_exact": "213/16",
+        "probability_numerator": 288821912238230694770
+      },
+      {
+        "time_exact": "215/16",
+        "probability_numerator": 379680119976530316800
+      },
+      {
+        "time_exact": "217/16",
+        "probability_numerator": 477662368636325845540
+      },
+      {
+        "time_exact": "219/16",
+        "probability_numerator": 580726638889831327581
+      },
+      {
+        "time_exact": "221/16",
+        "probability_numerator": 686837638713909150800
+      },
+      {
+        "time_exact": "223/16",
+        "probability_numerator": 793995733540874058604
+      },
+      {
+        "time_exact": "225/16",
+        "probability_numerator": 900264394869455284888
+      },
+      {
+        "time_exact": "227/16",
+        "probability_numerator": 1003795835066325571352
+      },
+      {
+        "time_exact": "229/16",
+        "probability_numerator": 1102854530882161930816
+      },
+      {
+        "time_exact": "231/16",
+        "probability_numerator": 1195838375993931253160
+      },
+      {
+        "time_exact": "233/16",
+        "probability_numerator": 1281297243090962565427
+      },
+      {
+        "time_exact": "235/16",
+        "probability_numerator": 1357948778051817920625
+      },
+      {
+        "time_exact": "237/16",
+        "probability_numerator": 1424691292007125272077
+      },
+      {
+        "time_exact": "239/16",
+        "probability_numerator": 1480613660943372810346
+      },
+      {
+        "time_exact": "241/16",
+        "probability_numerator": 1525002186373088525300
+      },
+      {
+        "time_exact": "243/16",
+        "probability_numerator": 1557344413890487816543
+      },
+      {
+        "time_exact": "245/16",
+        "probability_numerator": 1577329948582446645668
+      },
+      {
+        "time_exact": "247/16",
+        "probability_numerator": 1584848346734728533998
+      },
+      {
+        "time_exact": "249/16",
+        "probability_numerator": 1579984201559794611963
+      },
+      {
+        "time_exact": "251/16",
+        "probability_numerator": 1563009576313108298196
+      },
+      {
+        "time_exact": "253/16",
+        "probability_numerator": 1534373970743584251883
+      },
+      {
+        "time_exact": "255/16",
+        "probability_numerator": 1494692035975409952545
+      },
+      {
+        "time_exact": "257/16",
+        "probability_numerator": 1444729278332105214455
+      },
+      {
+        "time_exact": "259/16",
+        "probability_numerator": 1385386014036148939039
+      },
+      {
+        "time_exact": "261/16",
+        "probability_numerator": 1317679853955302614272
+      },
+      {
+        "time_exact": "263/16",
+        "probability_numerator": 1242727010487491283004
+      },
+      {
+        "time_exact": "265/16",
+        "probability_numerator": 1161722727208943774924
+      },
+      {
+        "time_exact": "267/16",
+        "probability_numerator": 1075921136045667891831
+      },
+      {
+        "time_exact": "269/16",
+        "probability_numerator": 986614846516751313533
+      },
+      {
+        "time_exact": "271/16",
+        "probability_numerator": 895114567148081831423
+      },
+      {
+        "time_exact": "273/16",
+        "probability_numerator": 802729050630960689455
+      },
+      {
+        "time_exact": "275/16",
+        "probability_numerator": 710745641917879447491
+      },
+      {
+        "time_exact": "277/16",
+        "probability_numerator": 620411692471599374203
+      },
+      {
+        "time_exact": "279/16",
+        "probability_numerator": 532917084621177953951
+      },
+      {
+        "time_exact": "281/16",
+        "probability_numerator": 449378087775596537224
+      },
+      {
+        "time_exact": "283/16",
+        "probability_numerator": 370822743480795053413
+      },
+      {
+        "time_exact": "285/16",
+        "probability_numerator": 298177949384754452630
+      },
+      {
+        "time_exact": "287/16",
+        "probability_numerator": 232258383524103879256
+      },
+      {
+        "time_exact": "289/16",
+        "probability_numerator": 173757380405375387484
+      },
+      {
+        "time_exact": "291/16",
+        "probability_numerator": 123239839573415348346
+      },
+      {
+        "time_exact": "293/16",
+        "probability_numerator": 81137216189288384172
+      },
+      {
+        "time_exact": "295/16",
+        "probability_numerator": 47744612026489147173
+      },
+      {
+        "time_exact": "297/16",
+        "probability_numerator": 23219954673060722176
+      },
+      {
+        "time_exact": "299/16",
+        "probability_numerator": 7585223017584192040
+      },
+      {
+        "time_exact": "301/16",
+        "probability_numerator": 729648696383151048
+      },
+      {
+        "time_exact": "303/16",
+        "probability_numerator": 2414796458196104047
+      },
+      {
+        "time_exact": "305/16",
+        "probability_numerator": 12281401700011788617
+      },
+      {
+        "time_exact": "307/16",
+        "probability_numerator": 29857821047152596693
+      },
+      {
+        "time_exact": "309/16",
+        "probability_numerator": 54569932056352888292
+      },
+      {
+        "time_exact": "311/16",
+        "probability_numerator": 85752301134849210803
+      },
+      {
+        "time_exact": "313/16",
+        "probability_numerator": 122660424769472623073
+      },
+      {
+        "time_exact": "315/16",
+        "probability_numerator": 164483838279662652888
+      },
+      {
+        "time_exact": "317/16",
+        "probability_numerator": 210359878632689928212
+      },
+      {
+        "time_exact": "319/16",
+        "probability_numerator": 259387883426630607571
+      },
+      {
+        "time_exact": "321/16",
+        "probability_numerator": 310643606948599777643
+      },
+      {
+        "time_exact": "323/16",
+        "probability_numerator": 363193636198655827344
+      },
+      {
+        "time_exact": "325/16",
+        "probability_numerator": 416109594835942055057
+      },
+      {
+        "time_exact": "327/16",
+        "probability_numerator": 468481931013665821248
+      },
+      {
+        "time_exact": "329/16",
+        "probability_numerator": 519433095845169689940
+      },
+      {
+        "time_exact": "331/16",
+        "probability_numerator": 568129932570754924621
+      },
+      {
+        "time_exact": "333/16",
+        "probability_numerator": 613795112128319075844
+      },
+      {
+        "time_exact": "335/16",
+        "probability_numerator": 655717468496721415374
+      },
+      {
+        "time_exact": "337/16",
+        "probability_numerator": 693261106582173947278
+      },
+      {
+        "time_exact": "339/16",
+        "probability_numerator": 725873176239241197785
+      },
+      {
+        "time_exact": "341/16",
+        "probability_numerator": 753090227929716560472
+      },
+      {
+        "time_exact": "343/16",
+        "probability_numerator": 774543088186298776530
+      },
+      {
+        "time_exact": "345/16",
+        "probability_numerator": 789960216121247407671
+      },
+      {
+        "time_exact": "347/16",
+        "probability_numerator": 799169525361681278421
+      },
+      {
+        "time_exact": "349/16",
+        "probability_numerator": 802098678667372613222
+      },
+      {
+        "time_exact": "351/16",
+        "probability_numerator": 798773884768769303484
+      },
+      {
+        "time_exact": "353/16",
+        "probability_numerator": 789317248342485246419
+      },
+      {
+        "time_exact": "355/16",
+        "probability_numerator": 773942744227663495007
+      },
+      {
+        "time_exact": "357/16",
+        "probability_numerator": 752950905711357987069
+      },
+      {
+        "time_exact": "359/16",
+        "probability_numerator": 726722333732607894658
+      },
+      {
+        "time_exact": "361/16",
+        "probability_numerator": 695710148960664260324
+      },
+      {
+        "time_exact": "363/16",
+        "probability_numerator": 660431521712097562950
+      },
+      {
+        "time_exact": "365/16",
+        "probability_numerator": 621458425437248249281
+      },
+      {
+        "time_exact": "367/16",
+        "probability_numerator": 579407767916897856555
+      },
+      {
+        "time_exact": "369/16",
+        "probability_numerator": 534931060289542488192
+      },
+      {
+        "time_exact": "371/16",
+        "probability_numerator": 488703787539255543998
+      },
+      {
+        "time_exact": "373/16",
+        "probability_numerator": 441414645111337626295
+      },
+      {
+        "time_exact": "375/16",
+        "probability_numerator": 393754804921131452751
+      },
+      {
+        "time_exact": "377/16",
+        "probability_numerator": 346407370248612483759
+      },
+      {
+        "time_exact": "379/16",
+        "probability_numerator": 300037172968841832340
+      },
+      {
+        "time_exact": "381/16",
+        "probability_numerator": 255281058388320726115
+      },
+      {
+        "time_exact": "383/16",
+        "probability_numerator": 212738792800520960652
+      },
+      {
+        "time_exact": "385/16",
+        "probability_numerator": 172964716926920991179
+      },
+      {
+        "time_exact": "387/16",
+        "probability_numerator": 136460254881861301060
+      },
+      {
+        "time_exact": "389/16",
+        "probability_numerator": 103667373418694313098
+      },
+      {
+        "time_exact": "391/16",
+        "probability_numerator": 74963070224784664237
+      },
+      {
+        "time_exact": "393/16",
+        "probability_numerator": 50654953189340549810
+      },
+      {
+        "time_exact": "395/16",
+        "probability_numerator": 30977955134023956215
+      },
+      {
+        "time_exact": "397/16",
+        "probability_numerator": 16092210738810342946
+      },
+      {
+        "time_exact": "399/16",
+        "probability_numerator": 6082104581530930456
+      },
+      {
+        "time_exact": "401/16",
+        "probability_numerator": 956481601812449970
+      },
+      {
+        "time_exact": "403/16",
+        "probability_numerator": 649994153852091832
+      },
+      {
+        "time_exact": "405/16",
+        "probability_numerator": 5025543371417823854
+      },
+      {
+        "time_exact": "407/16",
+        "probability_numerator": 13877757061748791541
+      },
+      {
+        "time_exact": "409/16",
+        "probability_numerator": 26937431983980926438
+      },
+      {
+        "time_exact": "411/16",
+        "probability_numerator": 43876855343130545180
+      },
+      {
+        "time_exact": "413/16",
+        "probability_numerator": 64315908810353414297
+      },
+      {
+        "time_exact": "415/16",
+        "probability_numerator": 87828848506951574652
+      },
+      {
+        "time_exact": "417/16",
+        "probability_numerator": 113951646279534209727
+      },
+      {
+        "time_exact": "419/16",
+        "probability_numerator": 142189771335035095333
+      },
+      {
+        "time_exact": "421/16",
+        "probability_numerator": 172026286956389719955
+      },
+      {
+        "time_exact": "423/16",
+        "probability_numerator": 202930134612897731553
+      },
+      {
+        "time_exact": "425/16",
+        "probability_numerator": 234364477314881640862
+      },
+      {
+        "time_exact": "427/16",
+        "probability_numerator": 265794975512834720392
+      },
+      {
+        "time_exact": "429/16",
+        "probability_numerator": 296697872151737068361
+      },
+      {
+        "time_exact": "431/16",
+        "probability_numerator": 326567768580059666561
+      },
+      {
+        "time_exact": "433/16",
+        "probability_numerator": 354924979773802296924
+      },
+      {
+        "time_exact": "435/16",
+        "probability_numerator": 381322365639504523969
+      },
+      {
+        "time_exact": "437/16",
+        "probability_numerator": 405351544856738040426
+      },
+      {
+        "time_exact": "439/16",
+        "probability_numerator": 426648408642307241385
+      },
+      {
+        "time_exact": "441/16",
+        "probability_numerator": 444897863782154288068
+      },
+      {
+        "time_exact": "443/16",
+        "probability_numerator": 459837747087356065587
+      },
+      {
+        "time_exact": "445/16",
+        "probability_numerator": 471261866882929703334
+      },
+      {
+        "time_exact": "447/16",
+        "probability_numerator": 479022141021655395939
+      },
+      {
+        "time_exact": "449/16",
+        "probability_numerator": 483029815016115439273
+      },
+      {
+        "time_exact": "451/16",
+        "probability_numerator": 483255757987276960506
+      },
+      {
+        "time_exact": "453/16",
+        "probability_numerator": 479729848027297867783
+      },
+      {
+        "time_exact": "455/16",
+        "probability_numerator": 472539472064381190784
+      },
+      {
+        "time_exact": "457/16",
+        "probability_numerator": 461827178204394970962
+      },
+      {
+        "time_exact": "459/16",
+        "probability_numerator": 447787530625663280650
+      },
+      {
+        "time_exact": "461/16",
+        "probability_numerator": 430663228252461073601
+      },
+      {
+        "time_exact": "463/16",
+        "probability_numerator": 410740558478787520728
+      },
+      {
+        "time_exact": "465/16",
+        "probability_numerator": 388344266025218686230
+      },
+      {
+        "time_exact": "467/16",
+        "probability_numerator": 363831924476766250168
+      },
+      {
+        "time_exact": "469/16",
+        "probability_numerator": 337587904079182085922
+      },
+      {
+        "time_exact": "471/16",
+        "probability_numerator": 310017033898293806924
+      },
+      {
+        "time_exact": "473/16",
+        "probability_numerator": 281538059428370852100
+      },
+      {
+        "time_exact": "475/16",
+        "probability_numerator": 252576998151513209554
+      },
+      {
+        "time_exact": "477/16",
+        "probability_numerator": 223560495404532822442
+      },
+      {
+        "time_exact": "479/16",
+        "probability_numerator": 194909281229845981383
+      },
+      {
+        "time_exact": "481/16",
+        "probability_numerator": 167031825722019188984
+      },
+      {
+        "time_exact": "483/16",
+        "probability_numerator": 140318285802660568612
+      },
+      {
+        "time_exact": "485/16",
+        "probability_numerator": 115134830454140975040
+      },
+      {
+        "time_exact": "487/16",
+        "probability_numerator": 91818424326297154638
+      },
+      {
+        "time_exact": "489/16",
+        "probability_numerator": 70672141425366108457
+      },
+      {
+        "time_exact": "491/16",
+        "probability_numerator": 51961071440784070574
+      },
+      {
+        "time_exact": "493/16",
+        "probability_numerator": 35908871315027100908
+      },
+      {
+        "time_exact": "495/16",
+        "probability_numerator": 22695004075820553501
+      },
+      {
+        "time_exact": "497/16",
+        "probability_numerator": 12452695897280654263
+      },
+      {
+        "time_exact": "499/16",
+        "probability_numerator": 5267631009772917319
+      },
+      {
+        "time_exact": "501/16",
+        "probability_numerator": 1177392612161221332
+      },
+      {
+        "time_exact": "503/16",
+        "probability_numerator": 171646528515684176
+      },
+      {
+        "time_exact": "505/16",
+        "probability_numerator": 2193053164663961663
+      },
+      {
+        "time_exact": "507/16",
+        "probability_numerator": 7138882522717159882
+      },
+      {
+        "time_exact": "509/16",
+        "probability_numerator": 14863296780112169050
+      },
+      {
+        "time_exact": "511/16",
+        "probability_numerator": 25180255379538811015
+      }
+    ]
+  },
+  "scope": "IID ideal sharp-wall full-Gibbs Ramsey trials; deterministic certificate is a prerequisite. Physical drift/noise, preparation and readout overheads are not newly bounded here."
+}

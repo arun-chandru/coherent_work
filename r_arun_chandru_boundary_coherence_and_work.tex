@@ -1,0 +1,2878 @@
+\documentclass[aps,pra,reprint,superscriptaddress,longbibliography]{revtex4-2}
+\usepackage[T1]{fontenc}
+% A partial Latin Modern cache can lack the five-point roman metric.
+% Full installations keep their normal font definitions unchanged.
+\IfFileExists{ec-lmr5.tfm}{}{%
+ \IfFileExists{t1lmr.fd}{%
+  \input{t1lmr.fd}%
+  \DeclareFontShape{T1}{lmr}{m}{n}
+   {<-6.5>ec-lmr6 <6.5-7.5>ec-lmr7 <7.5-8.5>ec-lmr8
+    <8.5-9.5>ec-lmr9 <9.5-11>ec-lmr10 <11-15>ec-lmr12
+    <15->ec-lmr17}{}%
+ }{}%
+}
+\usepackage{amsmath,amssymb,bm,booktabs,graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\id}{\mathbb I}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ket}[1]{\lvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\ip}[2]{\langle#1,#2\rangle}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Srel}{\mathsf D}
+\begin{document}
+\title{Boundary coherence and work fluctuations under quantum confinement control}
+\author{R. Arun Chandru}
+\email{arun.chandru@gmail.com}
+\date{\today}
+\begin{abstract}
+Coherent boundary interference can purify the retained part of an
+increasingly mixed Gibbs state, while its work statistics probe
+inequivalent spectral sectors. We establish this connection for a confined
+particle subject to a coherently controlled potential wall. A common
+boundary source governs the conditional state, while its positive
+spectral measure determines the leading population--coherence
+allocation of dissipated work and the Ramsey response. Resonant
+interference produces an asymptotically
+pure retained state with an explicitly paid success probability.
+For a sharp wall, a discrete near-elastic sector contributes a
+logarithm to absolute work that is absent from the quadratic-weight
+continuum limit. Its contribution makes the ratio of absolute to net
+work diverge on specified thermal paths. Smooth-wall thermodynamic
+limits, a finite smooth-device certificate with timing and readout
+errors, and a finite-count reconstruction scheme connect these results
+to operational resources.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+Coherent control and thermal averaging interrogate different aspects of
+a quantum boundary. Thermal occupation counts the states available in
+an extended well. A local change of the wall instead couples to the
+small part of each wave function that penetrates the controlled region.
+It is therefore possible for many orthogonal occupied states to have
+nearly parallel responses to the same local perturbation. What remains
+to be established is whether this alignment survives the complete
+Gibbs ensemble, how much a retained state costs, and which work
+statistics can be inferred from its interferometric signature.
+
+The characteristic function of quantum work can be measured by a
+Ramsey interferometer, without carrying out the two projective energy
+measurements in each run \cite{Dorner2013,Mazzola2013,Batalhao2014}.
+Conditional purification through repeated ancillary measurements is
+also well established \cite{Nakazato2003}, including thermal-state
+filtering by Ramsey postselection \cite{Oyarce2019} and engineered
+ancilla-mediated logical-state protocols \cite{Pushpan2025}.
+These observations motivate
+the experiment considered here, but do not settle its continuum limit.
+In particular, a vanishing unnormalized error need not remain small
+after conditioning on a rare outcome. Nor does convergence of purity
+to one imply convergence of entropy in an unbounded Hilbert space.
+The retained state, its full success probability, and its spectral
+tails must be controlled together.
+
+Another distinction concerns the information contained in work.
+The decomposition of irreversible entropy production into population
+and coherence contributions is established in quantum thermodynamics
+\cite{Francica2019}. In an extended continuum system, the thermal scale
+can compete with the exponentially small Gibbs weight at a fixed final
+energy. The boundary contribution must then be followed through the
+moving crossover rather than expanded uniformly in the transition
+probability. Finite-dimensional high-temperature quench expansions
+\cite{Varizi2022} address a different limit: here the barrier is
+thermally high and the number of populated low modes diverges.
+We obtain an explicit capped spectral moment for this
+competition, including the thermally activated population above the
+initial barrier.
+
+The same system also reveals a limitation of inferring singular work
+functionals from a regular interferometric limit. A quadratic work
+weight gives a finite limiting measure. An absolute-value weight is
+more sensitive to transitions between nearby levels. We calculate
+their accumulated contribution directly in the finite well. It is
+logarithmic in the number of thermally occupied modes and survives
+after the regular continuum contribution has been extracted. Thus
+fixed-time convergence of a Ramsey response does not justify
+interchanging the continuum limit with an unbounded observation-time
+integral. Local-quench work edges and scattering-controlled Ramsey
+responses already occur in critical and Fermi systems
+\cite{Smacchia2012,Knap2012,Sindona2013}. Scattering-induced logarithms
+are also central to orthogonality catastrophe \cite{Kuttler2014}.
+The present calculation instead concerns a single-particle Gibbs
+ensemble, a finite wall-height ratio, and a gap-weighted thermal
+harmonic sum with an additive remainder. Its finite-amplitude quench
+and singular thermal limit distinguish it from weak-amplitude work
+response \cite{Guarnieri2024}.
+
+In an earlier work~\cite{ChandruRareWork}, we established finite-wall boundary-source
+laws and rare work costs at fixed inverse temperature in box units.
+Here that inverse temperature tends to zero, and the number of thermally
+occupied well modes diverges jointly with the barrier scale. The resulting
+coherence is leading order, the relevant thermal crossover is retained,
+and the nearby-level work sector requires a separate calculation.
+The physical instrument remains a pair of controlled propagators;
+no final motional-energy projection or commuting surrogate filter is
+inserted. The analysis yields four connected results. It identifies
+the common boundary spectral measure, determines its thermodynamic
+allocation, resolves the singular absolute-work law for a sharp wall,
+and gives finite operational statements for purification and
+reconstruction. The complete derivations below make explicit where
+a smooth-profile result applies and where the sharp-wall calculation
+uses its exact matching conditions.
+
+\section{A controlled boundary and its physical scales}
+\label{sec:model}
+
+Let a particle occupy the interval $0<y<2$, with Dirichlet boundary
+conditions. Initially and on the controlled branch its dimensionless
+Hamiltonians are
+\begin{equation}
+ A_r=-r^2\partial_y^2+F((y-1)/r),\qquad
+ B_r=A_r+3F((y-1)/r).                         \label{eq:ham}
+\end{equation}
+The sharp wall is $F(x)=\one_{(0,\infty)}(x)$. The smooth asymptotic
+family consists of a fixed nondecreasing smooth $F$ with $0\le F\le1$,
+$F=0$ on $x\le-d$ and $F=1$ on $x\ge d$, for a fixed $d>0$.
+Constants may depend on this profile. A separate finite example will
+use an error-function wall with noncompact, exponentially small tails.
+
+The prepared state is the full Gibbs state
+\begin{equation}
+ \rho_{r,s}=Z_1^{-1}\ee^{-sA_r},\qquad
+ Z_h=\Tr\ee^{-s[-r^2\partial_y^2+hF((y-1)/r)]}.
+                                                               \label{eq:gibbs}
+\end{equation}
+All initial eigenstates are included. A pure ancillary two-level
+system coherently selects the two propagators. Its dark outcome
+retains the motional operator
+\begin{equation}
+ \begin{gathered}
+ K_t=\frac{\ee^{-itB_r}-\ee^{-itA_r}}2,\quad\\
+ p_{r,s}(t)=\Tr K_t\rho_{r,s}K_t^*,\quad\\
+ \sigma_t=K_t\rho_{r,s}K_t^*/p_{r,s}(t).          \label{eq:kraus}
+ \end{gathered}
+\end{equation}
+The complementary Kraus operator is the sum of the same propagators
+divided by two. Their squared operators add to the identity.
+
+To restore units, let the physical coordinate be $L_0y$ and put
+$E_0=\hbar^2/(2mL_0^2)$. Then
+\begin{equation}
+ H_{A,B}=\frac{E_0}{r^2}(A_r,B_r),\qquad
+ \beta_{\rm phys}=\frac{s r^2}{E_0},\qquad
+ t_{\rm phys}=\frac{\hbar r^2}{E_0}t.             \label{eq:units}
+\end{equation}
+The barrier height grows as $r^{-2}$, while a fixed dimensionless
+duration shrinks in laboratory units. Their product is a bounded
+action; this is not a bounded-height or fixed-duration protocol.
+
+The basic limit and two useful parameters are
+\begin{equation}
+ r\downarrow0,\quad s\to\infty,\quad r\sqrt{s}\to0,
+ \qquad N=\frac1{r\sqrt{s}},\quad \Xi=\frac{s\ee^{-s}}r.
+                                                               \label{eq:regime}
+\end{equation}
+$N$ measures the growing thermal mode count. The input purity obeys
+$\Tr\rho_{r,s}^2\sim\sqrt{2\pi}\,r\sqrt{s}$ and hence tends to zero.
+The parameter $\Xi$ compares activated population in the raised region
+with the boundary contribution to a rare output. Some results below
+require $\Xi$ bounded or convergent; the resonant sharp-wall
+purification result does not.
+
+\section{One spectral measure for the boundary response}
+\label{sec:source}
+
+In the boundary coordinate $x=(y-1)/r$ the interval is
+$(-\ell,\ell)$, $\ell=1/r$, and the kinetic term is $-\partial_x^2$.
+For a smooth plateau profile let $f_h$ be the positive decaying
+zero-energy solution on $[-d,\infty)$,
+\begin{equation}
+ -f_h''+hFf_h=0,\quad f_h(-d)=1,\quad m_h=-f_h'(-d)>0.
+                                                               \label{eq:zeroenergy}
+\end{equation}
+Set $g=Ff_1$, extended by zero to $x<-d$, and
+$B_\infty=-\partial_x^2+4F$ on the full line. Define
+\begin{equation}
+ \nu_F(\dd E)=\frac9{m_1^2}E^{-2}
+       \ip{g}{\one_{\dd E}(B_\infty)g},\qquad E>0.
+                                                               \label{eq:source}
+\end{equation}
+This is a positive spectral measure, not a probability distribution.
+Its mass is infinite at zero, while its first and second moments are
+finite. Write
+\begin{align}
+ D_F&=m_1^{-1}-m_4^{-1},\nonumber\\
+ M_F&=3\dot m_1/m_1^2-D_F=\int E\,\nu_F(\dd E),\label{eq:moments}\\
+ Q_F&=9\norm{g}^2/m_1^2=\int E^2\,\nu_F(\dd E),\nonumber
+\end{align}
+where a dot denotes differentiation with respect to wall height.
+The two response functions used throughout are
+\begin{equation}
+ \begin{gathered}
+ C_F(t)=\int\sin^2(tE/2)\,\nu_F(\dd E),\qquad\\
+ \Phi_F(c)=\int\min(E,c)\,\nu_F(\dd E).          \label{eq:responses}
+ \end{gathered}
+\end{equation}
+
+The local density at threshold is
+\begin{equation}
+ \nu_F'(E)=\frac{D_F^2}{\pi}E^{-3/2}[1+O_F(E)]
+                  \quad(E\downarrow0).                       \label{eq:threshold}
+\end{equation}
+It follows that $C_F(t)$ is finite at every fixed time and
+$0<\Phi_F(c)\le M_F$ for $c>0$, with strict upper inequality for
+$0<c<4$. The coefficient $D_F$ is
+unchanged by moving the reference point $-d$ farther into the free
+plateau. It satisfies $D_F\ge1/2$, strictly for a genuine smooth
+transition. The resulting ordered limits are
+\begin{equation}
+ \Phi_F(1/a)\sim\frac{4D_F^2}{\pi\sqrt a},\qquad
+ C_F(t)\sim\frac{D_F^2}{\sqrt{2\pi}}\sqrt{|t|},                 \label{eq:ordered}
+\end{equation}
+as $a\to\infty$ or $|t|\to\infty$ after forming the continuum source.
+These are not joint growing-time statements for the finite device.
+
+For the sharp wall $m_h=\sqrt h$, $D_F=1/2$, $M_F=1$, $Q_F=9/2$,
+and we omit the subscript $F$. Matching the full-line Green function
+gives the explicit density
+\begin{equation}
+ \nu'(E)=
+ \begin{cases}
+ \displaystyle\frac9{4\pi E^{3/2}(1+\sqrt{4-E})^2},&0<E<4,\\[5pt]
+ \displaystyle\frac{9(1+\sqrt E\sqrt{E-4})}
+ {\pi E^2(\sqrt E+\sqrt{E-4})(E-3)^2},&E>4.
+ \end{cases}                                                   \label{eq:sharpdensity}
+\end{equation}
+There is no atom at four. The apparent change there is the opening of
+the right propagating channel, not an additional bound state.
+
+\section{Coherence retained by boundary interference}
+\label{sec:herald}
+
+For a low initial eigenstate $u_E$, the part in the controlled region
+is a scalar boundary value times a common analytic family:
+$Fu_E=b_Eg_{E,\ell}$. Duhamel's identity therefore reads exactly
+\begin{equation}
+ \begin{gathered}
+ K_tu_E=b_E\ee^{-itE}V_{E,\ell}(t),\qquad\\
+ V_{E,\ell}(t)=\frac32 h_t(B_\ell-E)g_{E,\ell},\quad\\
+ h_t(z)=\frac{\ee^{-itz}-1}{z}.                 \label{eq:column}
+ \end{gathered}
+\end{equation}
+The value at zero is $h_t(0)=-it$. Low thermal energies approach zero,
+so these columns become parallel even though their input eigenstates
+are orthogonal. Their complete thermal covariance has leading term
+\begin{equation}
+ K_t\rho_{r,s}K_t^*\big|_{\text{low input}}
+ =\frac r{s m_1^2}\ket{V_{0,\ell}(t)}\bra{V_{0,\ell}(t)}
+                       +o_1(r/s),                            \label{eq:covariance}
+\end{equation}
+where $o_1$ is in trace norm. The source vector converges strongly to
+$V_t=(3/2)h_t(B_\infty)g$, with
+$\norm{V_t}^2/m_1^2=C_F(t)$.
+
+If $\Xi\to x<\infty$, the full, off-resonant probability satisfies
+\begin{equation}
+ \frac{s}{r}p_{r,s}(t)\longrightarrow
+       C_F(t)+x\sin^2(3t/2),                                  \label{eq:timeyield}
+\end{equation}
+uniformly on each fixed compact time interval. The second term is
+activated volume, not another coherent source. For a fixed $t\ne0$,
+put $b=x\sin^2(3t/2)$. Its positive covariance has bounded limiting
+trace and vanishing operator norm after scaling by $s/r$. Consequently
+\begin{equation}
+ \begin{gathered}
+ \lambda_1(\sigma_t)\to\frac{C_F(t)}{C_F(t)+b},\quad\\
+ \lambda_2(\sigma_t)\to0,\quad\\
+ \Tr\sigma_t^2\to\left[\frac{C_F(t)}{C_F(t)+b}\right]^2.
+                                                               \label{eq:puritylimit}
+ \end{gathered}
+\end{equation}
+When $b>0$, the output entropy diverges: a nonzero weight is distributed
+among a growing number of small eigenvalues. When $b=0$, purity alone
+does not decide entropy.
+
+At the fundamental resonance $\tau=2\pi/3$, the activated plateau
+acquires the same branch phase. For the sharp wall, cancellation leaves
+only boundary terms at every initial energy, including at the barrier
+threshold. In the whole regime~\eqref{eq:regime},
+\begin{equation}
+ p_{r,s}(\tau)\sim C(\tau)\frac r s,\qquad
+ \norm{\sigma_\tau-\Pi_{r,\tau}}_1\to0,
+ \quad S(\sigma_\tau)\to0,                                  \label{eq:resonance}
+\end{equation}
+and all fixed positive-order R\'enyi entropies tend to zero.
+$\Pi_{r,\tau}$ projects onto the actual finite-box zero-energy source.
+The entropy conclusion uses all-index spectral-tail bounds, given
+in Appendix~\ref{app:control}, rather than a finite-dimensional
+continuity inequality. The smooth plateau version has the same yield
+$C_F(\tau)r/s$ and entropy conclusion, with profile-dependent constants.
+
+The average number of fresh preparations per retained state is
+$s/[C_F(\tau)r]$ to leading order. Each preparation includes a pure
+ancilla and a readout; the retained purity is conditional. The initial
+state becomes more mixed while the successful output becomes pure,
+but the success probability tends to zero.
+
+\subsection{Changing the controlled boundary changes the output rank}
+
+The source picture can be tested without changing the input ensemble.
+On $(0,3)$ let
+\begin{equation}
+ A_r=-r^2\partial_y^2+Q_L+Q_R,\quad
+ Q_L=\one_{(0,1)},\quad Q_R=\one_{(2,3)}.                       \label{eq:twowell}
+\end{equation}
+Compare control of $3Q_R$ with control of $3(Q_L+Q_R)$, at the same
+resonance and with the same complete Gibbs preparation. The limits are
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Controlled walls & Right only & Both\\
+\midrule
+$p/(r/s)$ & $C(\tau)$ & $2C(\tau)$\\
+Nonzero output weights & $1$ & $1/2,1/2$\\
+Output purity & $1$ & $1/2$\\
+Output entropy & $0$ & $\log2$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Both initial parity sectors are present in each experiment. With one
+controlled wall they feed the same boundary vector; with both controlled
+walls they feed orthogonal final parity sectors of equal limiting
+weight. This is a change of the physical controlled Hamiltonian, not
+a parity postselection. The calculation in Appendix~\ref{app:switch}
+keeps the factor of two in both the boundary amplitudes and the total
+preparation probability.
+
+\subsection{Repeated retention and the price of imperfect interference}
+
+For any fixed positive integer $m$, $m$ ideal successive dark outcomes
+apply $K_\tau^m$ to the same particle. The limiting source is
+$K_{\infty,\tau}^{m-1}V_\tau$, and
+\begin{equation}
+ p_m\sim C_{m,F}\frac r s,\qquad
+ C_{m,F}=\frac{\norm{K_{\infty,\tau}^{m-1}V_\tau}^2}{m_1^2}>0.
+                                                               \label{eq:repeat}
+\end{equation}
+The normalized state again has vanishing entropy. The positivity in
+this formula follows from injectivity of the actual first-resonance
+Kraus operator, not a presumed dominant eigenvector of a commuting
+filter. No interchange with $m\to\infty$ is needed.
+
+Real visibility loss is described by the completely positive map
+\begin{equation}
+ \begin{gathered}
+ \mathcal J_\nu(X)=\nu KXK^*+(1-\nu)\mathcal D(X),\qquad\\
+ \mathcal D(X)=\frac{U_BXU_B^*+U_AXU_A^*}{4},                  \label{eq:visibility}
+ \end{gathered}
+\end{equation}
+with $0\le\nu\le1$ and $\Tr\mathcal D(X)=\Tr X/2$.
+For two independent stages, with $\nu_j\in[0,1]$ and
+$\epsilon_j=1-\nu_j$, sufficient source-retention conditions are
+\begin{equation}
+ \epsilon_1+\epsilon_2\to0,\qquad
+ \epsilon_1\epsilon_2=o(r/s).                                \label{eq:twonoise}
+\end{equation}
+For vanishing entropy the second condition strengthens to
+$\epsilon_1\epsilon_2\log N=o(r/s)$. Under Eq.~\eqref{eq:twonoise},
+this strengthened product condition is also necessary. The
+all-false branch carries a mixture of four unitary images of the
+full Gibbs state and hence an entropy $\log N+O(1)$. Independent
+repetition suppresses that branch quadratically, but cannot make its
+preparation or entropy cost disappear.
+
+\section{Where dissipated work becomes population or coherence}
+\label{sec:thermo}
+
+Let $\gamma_B=\ee^{-sB_r}/Z_4$ and let $\Delta_B$ completely dephase in
+the final energy basis. With natural logarithms, set
+\begin{equation}
+ \begin{gathered}
+ I=\Srel(\rho\Vert\gamma_B),\quad\\
+ P=\Srel(\Delta_B\rho\Vert\gamma_B),\quad\\
+ J=\Srel(\rho\Vert\Delta_B\rho),\qquad I=P+J.                  \label{eq:allocation}
+ \end{gathered}
+\end{equation}
+The identity is the established population--coherence decomposition
+\cite{Francica2019}. Here it applies to the unselected state immediately
+after a sudden change of Hamiltonian, independently of whether a Ramsey
+outcome is retained. $I$ equals the mean dissipated work multiplied by
+the physical inverse temperature.
+
+Write $\Lambda=\log(1/r)$. On the paths
+\begin{equation}
+ \frac{s}{\Lambda}\to a\in[1,\infty),\qquad
+ \Xi\to x\in[0,\infty),                                    \label{eq:thermopath}
+\end{equation}
+where both $a$ and $x$ are finite, the complete smooth-profile result is
+\begin{equation}
+ \frac{(I,P,J)}r\longrightarrow
+ \bigl(M_F+3x,\ M_F-\Phi_F(1/a)+3x,\ \Phi_F(1/a)\bigr).
+                                                               \label{eq:thermolaw}
+\end{equation}
+Necessarily $x=0$ if $a>1$; for example $s=a\Lambda$ realizes this
+case. At $a=1$, any $x>0$ is realized by
+$s=\Lambda+\log\Lambda-\log x$, while
+$s=\Lambda+2\log\Lambda$ realizes $x=0$.
+The activated sector changes the total and
+population terms by $3x$, while the leading coherence coefficient is
+unchanged. Its final-energy weight concentrates at four; its work
+increment concentrates at three. These are different variables.
+
+The cap $1/a$ has a direct origin. At a fixed final energy $E$, the
+source population is polynomially small in the boundary parameter,
+whereas the equilibrium weight is proportional to $\ee^{-sE}$.
+Their competition occurs at $E=1/a$. Below it, population relative
+entropy is negligible at order $r$; above it, the contribution is
+$(E-1/a)\nu_F(\dd E)$. This interpretation alone would not control
+the moving crossover or the infinitely many final levels. The proof
+in Appendix~\ref{app:entropy} pays both with positive diagonal excess
+and an energy-weighted tail estimate.
+
+For the sharp wall, $M_F=1$ and the coherent fraction of the leading
+source dissipation is $\Phi(1/a)$. At $a=1$,
+\begin{equation}
+             0.4040654186<\Phi(1)<0.4040654188.                \label{eq:phinumeric}
+\end{equation}
+For a smooth profile, $D_F>1/2$ increases the sequential large-$a$
+coefficient in Eq.~\eqref{eq:ordered}. This compares that coefficient,
+not all finite-$a$ curves. A useful profile-independent connection to
+the retained yield is
+\begin{equation}
+          C_F(2\pi/3)\le a\Phi_F(1/a)\le aM_F.               \label{eq:yieldcoherence}
+\end{equation}
+The first inequality follows pointwise from
+$\sin^2(\pi E/3)\le\min(E,1)\le a\min(E,1/a)$.
+
+Although $I=O(r)$ tends to zero, its dimensional work need not.
+Equation~\eqref{eq:units} gives
+$\langle W_{\rm diss}\rangle\sim E_0(M_F+3x)/(rs)$.
+The dimensionless relative entropy is not a fixed-energy cooling
+efficiency. Conditional retained states and unselected work statistics
+answer different operational questions.
+
+\section{A regular work limit and a singular absolute-work law}
+\label{sec:work}
+
+Let $(E_n,u_n)$ and $(\lambda_j,\phi_j)$ be the complete initial and
+final eigenpairs of Eq.~\eqref{eq:ham}. The sudden-quench work law in
+barrier units is
+\begin{equation}
+ \Pi_{r,s}=\frac1{Z_1}\sum_{n,j}\ee^{-sE_n}
+        |\ip{\phi_j}{u_n}|^2\delta_{\lambda_j-E_n}.            \label{eq:tpm}
+\end{equation}
+It is the two-projective-measurement work distribution. In our retained
+state protocol those energy measurements are not made: the spectral
+formula is also an exact expansion of the two controlled propagators.
+In particular,
+\begin{equation}
+       p_{r,s}(t)=\int\sin^2(t\omega/2)\,\Pi_{r,s}(\dd\omega).
+                                                               \label{eq:ramseytpm}
+\end{equation}
+
+Under Eq.~\eqref{eq:regime} with $\Xi\to x<\infty$, the finite positive
+measures $\zeta_{r,s}(\dd\omega)=(s/r)\omega^2\Pi_{r,s}(\dd\omega)$
+converge against every bounded continuous test function:
+\begin{equation}
+ \zeta_{r,s}\ \Longrightarrow\ 
+       \omega^2\nu_F(\dd\omega)+9x\delta_3.                  \label{eq:weightedlaw}
+\end{equation}
+The first term is supported on positive work. The limiting second
+moment is $Q_F+9x$. Dividing the sine-square test function in
+Eq.~\eqref{eq:ramseytpm} by $\omega^2$, with its continuous value at
+zero, proves Eq.~\eqref{eq:timeyield}. Absolute work, however, requires
+the singular quotient $1/|\omega|$. Equation~\eqref{eq:weightedlaw}
+cannot be used for that quotient.
+
+For the sharp wall, direct finite-spectrum analysis resolves it.
+For every fixed $c>0$, on Eq.~\eqref{eq:regime} with $\Xi=O(1)$,
+\begin{align}
+ \frac s r\mathbb E\min(|\omega|,c)
+ &=\Phi(c)+\frac12+\frac{\log N}{\pi^{3/2}\sqrt s}
+                   \nonumber\\
+ &\quad+\min(3,c)\Xi+o(1),\label{eq:abscap}\\
+ \frac s r\mathbb E|\omega|
+ &=\frac32+\frac{\log N}{\pi^{3/2}\sqrt s}+3\Xi+o(1),
+                                                            \label{eq:absolute}\\
+ \frac s r\mathbb E\omega&=\frac32+3\Xi+o(1),\qquad\nonumber\\
+ \frac s r\mathbb E(-\omega)_+
+       &=\frac{\log N}{2\pi^{3/2}\sqrt s}+o(1).                \label{eq:negative}
+\end{align}
+The remainders are additive even when the displayed logarithmic term
+diverges. The $1/2$ term comes from paired low levels whose work
+increments shrink to zero. The logarithm comes from a harmonic sum
+of transitions between nearby but differently indexed low levels.
+Neither term is obtained by applying a singular test function to
+Eq.~\eqref{eq:weightedlaw}. Appendix~\ref{app:infrared} derives them
+before taking the continuum limit.
+
+Physical work is $W=(E_0/r^2)\omega$. The following consequence is
+independent of the unit used for energy. If
+$s/\Lambda\to a>1$, then $\Xi\to0$ and
+\begin{equation}
+ \frac{\mathbb E|W|}{\mathbb EW}
+       \sim\frac{2\sqrt{s}}{3a\pi^{3/2}},\qquad
+ \frac{\mathbb E(-W)_+}{\mathbb E(W)_+}\longrightarrow1.       \label{eq:ratio}
+\end{equation}
+Large positive and negative absolute components increasingly cancel
+in the positive net work. Negative individual two-measurement outcomes
+are compatible with the nonnegative potential increment $B-A=3F$;
+the mean is $3\Tr\rho F\ge0$. There is no violation of passivity or
+of the positivity of dissipated work.
+
+The near-elastic sector is infrared \emph{relative to the barrier
+energy}. It need not have small laboratory energy. For example, a
+typical adjacent spacing is of order $r/\sqrt s$ in $\omega$, hence
+$E_0/(r\sqrt s)$ in $W$, which grows in Eq.~\eqref{eq:regime} at
+fixed $E_0$. Similarly, fixed $t$ in Eq.~\eqref{eq:timeyield} means a
+shrinking laboratory duration. Equations~\eqref{eq:absolute}--
+\eqref{eq:ratio} avoid interpreting a choice of units as a new
+low-frequency laboratory effect.
+
+\section{Recovering a coherent coefficient from actual counts}
+\label{sec:counts}
+
+For any positive measure on $(0,\infty)$ with finite first moment,
+cosine integration gives the positive reconstruction
+\begin{equation}
+ \Phi_F(c)=\frac4\pi\int_0^\infty
+              \frac{1-\cos(ct)}{t^2}C_F(t)\,\dd t.            \label{eq:positive}
+\end{equation}
+Its kernel has total mass $2c$. Thus an all-time uniform additive
+error $\eta$ in $C_F$ changes the reconstructed coefficient by at
+most $2c\eta$. This stability concerns a fixed capped moment;
+identifying the whole measure by differentiating cap data is a
+different inverse problem. Finite-resolution work measurements and
+coherence inference from energy data have their own established
+frameworks \cite{Ahmad2022,Alonso2026}. Here the target is the leading
+known-model continuum coefficient, not exact finite-state coherence
+tomography or a replacement for measurement backaction.
+
+The finite work law has the same integral identity with
+$C_F(t)$ replaced by $p_{r,s}(t)$ and $\Phi_F(c)$ by
+$\mathbb E\min(|\omega|,c)$. Equations~\eqref{eq:abscap} and
+\eqref{eq:timeyield} show why the scaled finite integral and the
+continuum-source integral cannot be interchanged. An infrared-rejected
+functional gives a regular bridge: for fixed $0<\eta<c$,
+\begin{align}
+ \frac s r\mathbb E\{\min(|\omega|,c)-\min(|\omega|,\eta)\}
+ \nonumber\\
+ \longrightarrow\Phi_F(c)-\Phi_F(\eta)
+             +x[\min(3,c)-\min(3,\eta)].                    \label{eq:reject}
+\end{align}
+Its quotient by $\omega^2$ is bounded and continuous. The device limit
+is taken before $\eta\downarrow0$. The corresponding time kernel is
+$4[\cos(\eta t)-\cos(ct)]/(\pi t^2)$ and need not be positive.
+
+For a finite positive source quadrature, let $t_i$ be the midpoints
+of a partition of $[0,T]$ and
+\begin{equation}
+ \begin{gathered}
+ w_i=\frac4\pi\int_{I_i}\frac{1-\cos(ct)}{t^2}\,\dd t,
+ \qquad\\ W=\sum_iw_i\le2c,\qquad \lambda=s/r.                 \label{eq:weights}
+ \end{gathered}
+\end{equation}
+The actual device quantity is $S=\lambda\sum_iw_ip_{r,s}(t_i)$.
+Choose node $i$ with probability $w_i/W$, independently on each
+fresh preparation, and record whether the dark outcome occurs.
+For independent trials with the same node response probabilities,
+after $n$ trials the pooled count is exactly binomial with parameter
+$\bar p=S/(\lambda W)$. The estimator is
+$\widehat S=\lambda W k/n$. If a deterministic full-device
+certificate gives $d_-\le S-\Phi_F(c)\le d_+$, any exact binomial
+confidence interval $[L_n(k),U_n(k)]$ gives
+\begin{equation}
+ \Phi_F(c)\in[\lambda W L_n(k)-d_+,\,
+              \lambda W U_n(k)-d_-].                         \label{eq:confidence}
+\end{equation}
+There is no subtraction of a fitted model mean from the raw counts.
+
+A convenient sufficient preparation budget, when $S\le D$ is
+certified, is
+\begin{equation}
+ n\ge\frac{2\lambda W\log(2/\alpha)}{\epsilon^2}
+                      (D+\epsilon/3).                        \label{eq:shots}
+\end{equation}
+It guarantees $|\widehat S-S|\le\epsilon$ with probability at least
+$1-\alpha$. The rare-event cost is proportional to $s/r$, not its
+square. It nevertheless remains large. For the sharp wall,
+$r=1/200$, $s=128$, $c=1$, $T=32$, and 256 midpoint nodes of spacing
+$1/8$, certified continuum enclosures give two distinct designs:
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Systematic accounting & Preparations & Total error\\
+\midrule
+Signed, fixed device & $62\,217\,817$ & $<0.050480$\\
+Separate absolute errors & $5\,999\,715\,692$ & $<0.099933$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Both have confidence at least $95\%$. The second is less than
+$\Phi(1)/4$. The first uses opposing source-grid and finite-device
+biases at the certified point; the second pays their absolute sizes
+separately. These counts include unsuccessful trials, fresh Gibbs
+states, pure ancillas, and readouts. They are sufficient mathematical
+budgets, not observed data, optimal lower bounds, or a claim of
+practical experimental advantage.
+
+Resonance-only sampling does not generally determine the capped
+coefficient: $\sin^2(n\tau(E+3)/2)=\sin^2(n\tau E/2)$. For example,
+adding respectively $\beta\delta_{7/2}$ and
+$\beta(\delta_{1/2}+\delta_{13/2})/2$ to a common positive source
+preserves the first moment and every resonant sample but changes
+$\Phi(1)$ by $\beta/4$. This is an obstruction in the positive-measure
+class, not a claim to have constructed two actual wall profiles with
+identical resonant data. Off-resonant measurements and their activated
+background must be treated explicitly.
+
+\section{A finite smooth device with unrecorded timing error}
+\label{sec:finite}
+
+The asymptotic results do not specify an experimental onset. A
+separate validated calculation includes the actual analytic wall
+\begin{equation}
+ \begin{gathered}
+ F_r(y)=\tfrac12\{1+\operatorname{erf}[(y-1)/0.025]\},\quad\\
+ r=0.05,\quad s=8,\quad\\
+ A=-r^2\partial_y^2+F_r,\quad B=A+3F_r.
+                                                               \label{eq:erf}
+ \end{gathered}
+\end{equation}
+Its 10--90 percent transition width is $0.9061938024\ldots$ times
+the penetration length $rL_0$; it is not a vanishingly small
+perturbation of a sharp wall. The accepted output is averaged over
+any input-independent, unrecorded duration distribution supported
+on $2\pi/3\pm0.001$. Visibility is $\nu=0.9999$ in
+Eq.~\eqref{eq:visibility}. Readout independently has false-positive
+probability $10^{-5}$ conditional on a bright outcome, and
+false-negative probability $0.01$ conditional on a dark outcome.
+For precisely this model, outward-rounded enclosures give
+\begin{align}
+ \Tr\rho^2&<0.386060,\nonumber\\
+ \Tr\sigma_{\rm recorded}^2&>0.9139989,\label{eq:certificate}\\
+ 0.00257508&<p_{\rm recorded}<0.00261934.\nonumber
+\end{align}
+The mean number of fresh preparations per recorded output is below
+389. This expectation is not a high-probability guarantee or a
+tomography cost. For independent attempts, a lower bound $p_-$
+gives at least one success with probability $1-\alpha$ after
+$n\ge\log\alpha/\log(1-p_-)$ attempts.
+
+The timing estimate is in the laboratory Schr\"odinger frame.
+For the actual Gibbs moments,
+\begin{equation}
+ \begin{gathered}
+ \norm{\partial_t K_t\sqrt\rho}_2
+ \le\sqrt{\Tr\rho A^2}+\frac32\sqrt{\Tr\rho F_r^2}
+ \\=L<0.220728.                                                \label{eq:jitter}
+ \end{gathered}
+\end{equation}
+A purification retaining a classical duration register bounds the
+unnormalized amplitude error by $L\Delta t$; normalization by the
+rare success probability is then paid explicitly. A fixed-time
+interaction-picture bound alone would not establish this statement
+about a mixture of unrecorded durations.
+
+The certificate uses validated ODE integration for the smooth
+transition, certified eigenvalue labels, complete Gibbs tails, and
+complete final spectral tails. Computational prefixes are not
+physical energy cutoffs. Appendix~\ref{app:certificate} gives the
+enclosure construction and its noise propagation; the public
+verification scripts reproduce the reported inequalities.
+
+Physical resolution, temperature, and duration cannot be chosen
+independently. If the 10--90 edge width is $W=a_{\rm erf}rL_0$,
+where $a_{\rm erf}=0.9061938024\ldots$, then
+\begin{equation}
+ \begin{gathered}
+ V=\frac{\hbar^2a_{\rm erf}^2}{2mW^2},\quad
+ k_BT=V/s,\quad\\ t_{\rm phys}=\tau\hbar/V,\quad
+ k_BTt_{\rm phys}/\hbar=\tau/s.                              \label{eq:tradeoff}
+ \end{gathered}
+\end{equation}
+For $^{87}$Rb and a $400$-nm width, this example corresponds to
+approximately $1.79$ nK and $1.12$ ms; the timing half-width is
+about $0.533\,\mu$s. This conversion fixes a demanding target,
+not an apparatus demonstration. Finite outer walls, transverse
+excitations, state-dependent losses, preparation and reset overhead,
+and interactions require their own experimental error budgets.
+
+\section{Discussion}
+
+The common source measure organizes three physically different
+questions. A coherent boundary experiment retains a nearly pure
+vector because low-energy columns align. Unselected thermodynamics
+splits its leading source dissipation at a Gibbs crossover, producing
+a capped moment. A quadratic work weighting has a regular continuum
+limit, whereas the less regular absolute-value functional retains
+the discrete nearby-level sector. These statements are compatible
+precisely because they do not exchange conditioning, thermal limits,
+and singular spectral testing.
+
+The finite smooth example makes conditional purification a quantitative
+prediction for a specified channel. The count construction addresses
+a different question: how many complete preparations suffice to infer
+a capped source coefficient. Its large cost is part of the result.
+Neither larger conditional purity nor a finite asymptotic coefficient
+alone establishes a measurement advantage.
+
+Several experimentally meaningful comparisons remain possible within
+this framework: changing which wall is controlled at fixed preparation,
+measuring the dependence on visibility and timing spread, and comparing
+regular quadratic work statistics with the near-elastic contribution
+to absolute work. For smooth profiles the source and thermodynamic
+laws are proved directly; the sharp-wall logarithmic absolute-work
+coefficient is a separate exact matching result. Extending that
+coefficient to a prescribed smooth family would require a uniform
+two-energy scattering expansion, not merely its zero-energy source
+density. This distinction keeps the present predictions tied to the
+Hamiltonians for which they have been established.
+
+\begin{acknowledgments}
+The author declares the use of consumer-grade Gemini-3 and GPT-6 models for literature search, exploring and developing ideas, codes and proofs, drafting and LaTeX typesetting; the author takes full and sole responsibility for all contents of this work.
+\end{acknowledgments}
+
+\section*{Data availability}
+Numerical results reported here are reproducible from the verification
+scripts and certificate data in the repository - Repository - 
+\href{https://github.com/arun-chandru/coherent_work}{github.com/arun-chandru/coherent\_work}.
+
+\appendix
+
+\section{Boundary source and regular work limit}
+\label{app:source}
+
+We give the estimates used by the thermodynamic and work results,
+including the complete thermal sectors. Throughout this appendix
+$\ell=1/r$, $b=\ell-d$, and $\mathcal L=\log(1/r)$; the latter must
+be distinguished from the boundary-coordinate length. Constants may
+depend on the fixed profile and on fixed energy cutoffs. For the sharp
+wall take $d=0$ and use its elementary sine and hyperbolic-sine solutions.
+Write $A_{h,\ell}=-\partial_x^2+hF$ with Dirichlet conditions on
+$(-\ell,\ell)$, and abbreviate $A_\ell=A_{1,\ell}$ and
+$B_\ell=A_{4,\ell}$.
+
+\subsection{Finite-box normalization and boundary amplitudes}
+
+Dirichlet and Neumann splitting at $-d,d$ gives, uniformly for
+$1\le h\le4$,
+\begin{equation}
+ N_{h,\ell}(E)=\frac b\pi\bigl(\sqrt E+\sqrt{(E-h)_+}\bigr)
+                      +O_d(1+\sqrt E).                 \label{eq:apcount}
+\end{equation}
+The error is bounded by the free count on the fixed middle interval
+and the endpoint integer errors. The same bound holds for strict
+counts. Stieltjes integration therefore yields
+\begin{align}
+ Z_h&=\frac{b(1+\ee^{-hs})}{2\sqrt\pi\sqrt s}
+                              +O_d(1+s^{-1/2}),\nonumber\\
+ T_h&:=\Tr\one_{[h,\infty)}(A_{h,\ell})\ee^{-sA_{h,\ell}}
+ \nonumber\\
+ &=\frac{b\ee^{-hs}}{2\sqrt\pi\sqrt s}
+       [1+O_d(s^{-1/2}+\sqrt s/b)].                    \label{eq:apheat}
+\end{align}
+For the second expression integrate the increment from $h-$: the
+right square root gives the displayed term, the left increment costs
+$O(b\ee^{-hs}/s)$, and the counting error costs $O_d(\ee^{-hs})$.
+Thus possible threshold eigenvalues are included. The same argument
+gives, for every fixed $e_0>0$,
+\begin{equation}
+ Z_1^{-1}\Tr\one_{[e_0,\infty)}(A_\ell)\ee^{-sA_\ell}
+                      \le C_{F,e_0}\ee^{-se_0}.         \label{eq:aptail}
+\end{equation}
+In the basic regime, $Z_h\sim(2\sqrt\pi r\sqrt s)^{-1}$; applying
+this at $s$ and $2s$ proves the input-purity formula in the main text.
+
+The right Dirichlet operator $H_{h,D}$ on $(-d,\ell)$ has a uniform
+gap $\gamma_d=1/\max(1,2d^2)$: for $u(-d)=0$,
+$\int_{-d}^d|u|^2\le2d^2\int_{-d}^d|u'|^2$, while $hF\ge1$
+on $(d,\ell)$. Let $f_{h,E,\ell}$ equal one at $-d$, vanish at
+$\ell$, and solve the right equation; set
+$m_{h,\ell}(E)=-f'_{h,E,\ell}(-d)$. Below a fixed small energy,
+\begin{equation}
+ \begin{aligned}
+ f_{h,E,\ell}&=(I-EH_{h,D}^{-1})^{-1}f_{h,0,\ell},\qquad\\
+ \partial_E m_{h,\ell}(E)&=-\norm{f_{h,E,\ell}}^2.
+ \end{aligned}                                         \label{eq:apode}
+\end{equation}
+The second identity follows by differentiating the equation and
+integrating its Wronskian. The zero-energy Dirichlet principle bounds
+$m_{h,\ell}(0)\ge(2d+1)^{-1}$: discard the transition potential and
+minimize $|1-u(d)|^2/(2d)+|u(d)|^2$. Zero-energy solutions have bounded
+norm, and the terminal constant plateau makes them and their
+low-energy derivatives converge exponentially as $\ell\to\infty$.
+Matching to the left sine, then integrating the normalization, gives
+\begin{align}
+ kb+\arctan\frac{k}{m_{h,\ell}(k^2)}&=n\pi,\nonumber\\
+ |u_E(-d)|^2
+ &=\frac{2E}{\begin{gathered}
+ b[E+m_{h,\ell}(E)^2]+m_{h,\ell}(E)\\
+                       -2E\partial_E m_{h,\ell}(E)
+ \end{gathered}}\nonumber\\
+ &=\frac{2E}{b m_h^2}
+       [1+O_F(E+b^{-1}+\ee^{-c_Fb})].                    \label{eq:apamp}
+\end{align}
+The phase count has bounded discrepancy from $bk/\pi$. For fixed
+nonnegative integers $j$, Gaussian Stieltjes integration implies
+\begin{equation}
+ \sum_{E_n<\delta}\ee^{-sE_n}|u_n(-d)|^2E_n^j
+ =\frac{\Gamma(j+3/2)}{\pi m_h^2}s^{-j-3/2}[1+o(1)],    \label{eq:apmom}
+\end{equation}
+where $\delta>0$ is fixed and sufficiently small. Relative errors are
+bounded by a constant times
+$s^{-1}+\sqrt s/b+\ee^{-\delta s/2}+\ee^{-c_Fb}$, uniformly in $h$.
+
+We shall also use the all-mode subthreshold estimates
+\begin{equation}
+ \begin{aligned}
+ \sum_{E_n<h}\norm{F^{1/2}u_n}^2&\le C_F,\qquad\\
+ \sum_{E_n<h}\ee^{-sE_n}\norm{Fu_n}^2&=O_F(s^{-3/2}).
+ \end{aligned}                                          \label{eq:apcollar}
+\end{equation}
+For low energies these follow from Eq.~\eqref{eq:apamp}. For
+$\delta\le E<h$, left sine normalization is $O(b^{-1/2})$, and a
+bounded transfer matrix across the fixed transition gives the same
+bound at $d$. The right-plateau mass is at most
+$C_F\min\{1,[b\sqrt{h-E}]^{-1}\}$. Integrate this increasing bounded
+weight against $N(E)=b\sqrt E/\pi+O_F(1)$. The principal integral is
+bounded by $\int_0^h[E(h-E)]^{-1/2}\dd E=\pi$; the discrepancy is
+bounded by the total variation and endpoint value. The middle interval
+costs a constant by $\sum_{E_n\le4}|u_n(x)|^2\le C_F$. To prove this
+local bound apply the one-dimensional evaluation inequality to
+$(A_{h,\ell}+1)^{-1}$ and use its spectral expansion. This argument
+includes modes arbitrarily close to $h$. Multiplying the low sector
+by the heat weight and using Eq.~\eqref{eq:apmom}, then charging the
+rest exponentially, proves the second assertion, also with $F$ in
+place of $F^2$.
+
+\subsection{Activated mass away from the controlled plateau}
+
+When $b/s\to\infty$, the following local estimate suffices:
+\begin{align}
+ U_h&:=\Tr(1-F)\one_{[h,\infty)}(A_{h,\ell})\ee^{-sA_{h,\ell}}
+ \nonumber\\
+ &\le C_F\ee^{-hs}(b/s+1)+C_Fb\ee^{-(h+1)s}/\sqrt s,\nonumber\\
+ U_h/T_h&=O_F(s^{-1/2}+\sqrt s/b+\ee^{-s})=o(1).         \label{eq:aplocal}
+\end{align}
+Here is a local resolvent proof which avoids eigenfunction localization.
+On the free left plateau put $t=x+\ell\in(0,b)$, $z=k^2$, $k=p+iq$,
+$p,q>0$. The right solution, normalized at $-d$, has logarithmic
+derivative $m(z)=\mathcal E-z\mathcal N$, where $\mathcal E,\mathcal N$
+are its nonnegative energy and norm integrals. Writing $m=u-iv$ gives
+$qu+pv=q(\mathcal E+|k|^2\mathcal N)\ge0$, hence
+$R(z)=[m(z)+ik]/[ik-m(z)]$ obeys $|R(z)|\le1$. The diagonal Green
+function is exactly
+\begin{equation}
+ G_z(t,t)=\frac{i}{2k}
+ \frac{1-\ee^{2ikt}+R\ee^{2ik(b-t)}-R\ee^{2ikb}}
+      {1+R\ee^{2ikb}}.                                  \label{eq:apgreen}
+\end{equation}
+For real parts in a fixed interval above zero and imaginary part
+$1/s$, one has $q\asymp1/s$. The denominator stays away from zero
+when $b/s\to\infty$, so $|G_z(t,t)|\le C$. The spectral inequality
+$\one_{[v-\eta,v+\eta]}(A)\le2\eta\operatorname{Im}(A-v-i\eta)^{-1}$
+then gives a left-local count $Cb\eta$. Sum cells of width $1/s$ in
+$[h,h+1]$ with their heat weights to obtain $Cb\ee^{-hs}/s$.
+The fixed middle interval costs $C_F\ee^{-hs}$ by the preceding
+local spectral bound; Eq.~\eqref{eq:aptail} pays every energy above
+$h+1$. This proves Eq.~\eqref{eq:aplocal}.
+
+For the sharp wall a frequency-bin bound removes the condition
+$b/s\to\infty$. On the physical left interval every mode above one
+is $a_n\sin(\omega_n y)$, $\omega_n=\sqrt{E_n}/r$. For sufficiently
+small $r$, the sine norm is at least $2/3$, and its frequency derivative
+has norm at most $2/3$. The normalized sine at the start of a frequency
+bin of width $1/4$ thus overlaps every sine in that bin by at least
+$1/2$. Bessel's inequality in the original full eigenbasis gives
+$\sum_{n\text{ in bin}}|a_n|^2\le4$. Counting bins yields
+\begin{align}
+ \sum_{1\le E_n\le E}\norm{(1-F)u_n}^2&\le4+8(E-1)/r,\nonumber\\
+ T_-:=\sum_{E_n\ge1}\ee^{-sE_n}\norm{(1-F)u_n}^2
+                    &\le\ee^{-s}(4+8/(rs)).              \label{eq:apsharpactivated}
+\end{align}
+The last step integrates the positive local spectral count, including
+a possible eigenvalue at one.
+
+\subsection{Source moments and threshold law}
+
+Zero-energy Wronskians give
+\begin{equation}
+ \dot m_h=\int Ff_h^2\dd x,\qquad
+ 3\int Ff_1f_4\dd x=m_4-m_1.                            \label{eq:apwronskian}
+\end{equation}
+Let $w=[f_1-(m_1/m_4)f_4]/3$ on the right and extend it constantly
+to the left. Its derivative matches zero and $B_\infty w=g$
+distributionally. Although the constant left tail generally prevents
+$w\in L^2$, its homogeneous energy is finite. Slow left cutoffs add
+arbitrarily little energy, while
+$|\int Ff_1v|^2\le(\int Ff_1^2)(\int F|v|^2)$ makes the source
+functional continuous in the energy norm. The form inverse, equivalently
+the monotone negative-resolvent limit, gives, with
+$\mu_g(\dd E)=\ip{g}{\one_{\dd E}(B_\infty)g}$,
+\begin{equation}
+ \int E^{-1}\mu_g(\dd E)
+ =\ip{g}{w}
+ =\frac{\dot m_1}{3}-\frac{m_1}{3m_4}\int Ff_1f_4\dd x. \label{eq:apform}
+\end{equation}
+Multiplication by $9/m_1^2$ proves the first-moment identity
+in Eq.~\eqref{eq:moments}; the second is immediate from the source
+definition. Positivity is strict because $g\ne0$.
+
+The full-line operator has no eigenvalues: nonnegativity excludes
+negative ones and the free left equation excludes an $L^2$ solution
+at every nonnegative energy. For $0<E<4$, let $h_E$ be the decaying
+right solution with $h_E(d)=1$, $h_E'(d)=-\sqrt{4-E}$. Gluing to the
+outgoing free left solution gives
+\begin{equation}
+ \begin{aligned}
+ \mu_g'(E)&=\frac{\sqrt E}{\pi}
+ \frac{|\int_{-d}^{\infty}g h_E\dd x|^2}
+      {h_E'(-d)^2+E h_E(-d)^2},\qquad\\
+ \mu_g(\dd E)&=\ip{g}{\one_{\dd E}(B_\infty)g}.
+ \end{aligned}                                          \label{eq:apdensity}
+\end{equation}
+One first derives this using a boundary-normalized right solution;
+the displayed form removes apparent poles at zeros of $h_E(-d)$.
+The denominator never vanishes. The numerator is real analytic and
+nonzero at zero by Eq.~\eqref{eq:apwronskian}, so each nonempty
+subinterval of $(0,4)$ has positive source measure. Expansion at zero
+proves Eq.~\eqref{eq:threshold}.
+
+For the sharp wall put $f=\ee^{-x}\one_{x>0}$,
+$\alpha=\sqrt{-z}$, $k=\sqrt{4-z}$ with positive real parts. Direct
+solution and derivative matching of $(B_\infty-z)v=f$ gives
+\begin{equation}
+ \ip{f}{(B_\infty-z)^{-1}f}
+          =\frac{k+2+\alpha}{2(k+1)^2(k+\alpha)}.         \label{eq:apsharpres}
+\end{equation}
+Upper-half-plane boundary values and Stieltjes inversion give
+Eq.~\eqref{eq:sharpdensity}, including the continuous value at four
+and the absence of an atom there. The value at $z=0-$ is $1/9$,
+independently proving $\int E\nu(\dd E)=1$. Compact-interval
+inversion followed by exhaustion includes the entire high-energy tail.
+
+Reference-point invariance follows because moving $-d$ left by $a_0$
+sends $m_h^{-1}$ to $m_h^{-1}+a_0$ and leaves both $g/m_1$ and
+$\dot m_h/m_h^2$ unchanged. To prove $D_F\ge1/2$, put
+$u=f_h/m_h$, $v=-u'$. Then $v(-d)=1$, $v\ge0$, $v'=-hFu$, and
+$(v^2-hu^2)'=2h(1-F)uv\ge0$, with terminal value zero. Thus
+$u\ge v/\sqrt h$ and
+\begin{equation}
+ \frac{\dot m_h}{m_h^2}
+   =-\frac1h\int uv'\dd x
+   \ge-\frac1{h^{3/2}}\int vv'\dd x
+   =\frac1{2h^{3/2}}.                                    \label{eq:apscatteringbound}
+\end{equation}
+Integration from one to four proves the bound, strictly when a smooth
+transition has $0<F<1$ on an interval. Splitting the cap at $E=1/a$
+proves the first ordered limit in Eq.~\eqref{eq:ordered}. For the
+second subtract $(D_F^2/\pi)E^{-3/2}\dd E$, leaving a finite signed
+measure, and use
+$\int_0^\infty\sin^2(u/2)u^{-3/2}\dd u=\sqrt{\pi/2}$.
+
+\subsection{The regular measure and fixed-time state limits}
+
+For a bounded continuous test $f$, the exact identity
+$(\lambda_j-E_n)\ip{\phi_j}{u_n}=3\ip{\phi_j}{Fu_n}$ gives
+\begin{equation}
+ \int f\dd\zeta_{r,s}
+ =9\frac sr\sum_n\rho_n
+                   \ip{Fu_n}{f(B_\ell-E_n)Fu_n}.         \label{eq:apworkidentity}
+\end{equation}
+At a zero gap the numerator vanishes as well. In the low sector write
+$Fu_n=b_ng_{E_n,\ell}$, $b_n=u_n(-d)$. Equation~\eqref{eq:apode}
+gives $\norm{g_{E,\ell}-g_{0,\ell}}\le C_FE$, and
+$g_{0,\ell}\to g$ after zero extension. Increasing Dirichlet intervals
+converge in strong resolvent sense. The associated vector spectral
+measures are tight because their masses converge and their compactly
+supported continuous tests converge. On a compact interval $f$ is
+uniformly continuous, so the energy shift also converges, yielding
+\begin{equation}
+ \begin{gathered}
+ \ip{g_{E,\ell}}{f(B_\ell-E)g_{E,\ell}}
+       \longrightarrow\ip{g}{f(B_\infty)g}\\
+                       \quad(E\to0,\ \ell\to\infty).
+ \end{gathered}                                         \label{eq:apshift}
+\end{equation}
+This argument does not assume global uniform continuity of $f$.
+Equations~\eqref{eq:apheat} and \eqref{eq:apmom} give
+$(s/r)\sum_{E_n<\delta}\rho_n|b_n|^2\to m_1^{-2}$, with vanishing
+weighted mass above any fixed positive low energy. Thus this sector
+in Eq.~\eqref{eq:apworkidentity} converges to
+$(9/m_1^2)\ip{g}{f(B_\infty)g}$. The rest of the subthreshold
+sector is at most $C_F\norm f_\infty s^{3/2}\ee^{-s\delta}$ by
+Eq.~\eqref{eq:apcollar}.
+
+The complete activated sector is $O(\Xi)$ and hence vanishes if
+$x=0$. If $x>0$, then $\ell\sim x\ee^s/s$, so
+Eq.~\eqref{eq:aplocal} applies. The exact shifted identity
+\begin{equation}
+       (B_\ell-E_n-3)u_n=-3(1-F)u_n                       \label{eq:apshiftthree}
+\end{equation}
+implies concentration of its averaged work measure at three: the
+fraction outside $|\omega-3|<\eta$ is bounded by $9\eta^{-2}$ times
+the averaged $\norm{(1-F)u_n}^2=o(1)$. Replacing $Fu_n$ by $u_n$
+in Eq.~\eqref{eq:apworkidentity} costs at most
+$2\norm f_\infty\norm{(1-F)u_n}$ and vanishes by Cauchy--Schwarz.
+Since $(s/r)T_1/Z_1\to x$, the result is $9xf(3)$. This proves
+Eq.~\eqref{eq:weightedlaw}, including its total mass. The same low
+calculation with $F$ instead of $F^2$ gives
+\begin{equation}
+ \frac sr\mathbb E\omega\to\frac{3\dot m_1}{m_1^2}+3x
+                              =M_F+D_F+3x.               \label{eq:apsigned}
+\end{equation}
+
+The continuous test $\sin^2(t\omega/2)/\omega^2$, valued $t^2/4$
+at zero, proves Eq.~\eqref{eq:timeyield}. Uniformity on fixed bounded
+time intervals follows from
+$(s/r)|p'_{r,s}(t)|\le(|t|/2)\zeta_{r,s}(\mathbb R)$ and a finite
+time net. For the state version use Eq.~\eqref{eq:column}: the same
+vector convergence and low moment give trace-norm convergence of
+the scaled low covariance to $m_1^{-2}\ket{V_t}\bra{V_t}$. The
+collar vanishes by $\norm{K_tu_n}\le(3/2)|t|\norm{Fu_n}$.
+The scaled activated covariance has trace tending to
+$b=x\sin^2(3t/2)$ and operator norm at most $\Xi/Z_1\to0$, since
+$K_t$ is a contraction. Its squared Hilbert--Schmidt norm and its
+cross term with the source vanish. This proves Eq.~\eqref{eq:puritylimit}.
+The source norm is positive for $t\ne0$ by Eq.~\eqref{eq:apdensity}.
+When $b>0$,
+$S(\sigma_t)\ge-(1-\lambda_1(\sigma_t))\log\lambda_2(\sigma_t)
+\to\infty$. No entropy continuity is inferred when $b=0$.
+
+\section{Complete static population and coherence allocation}
+\label{app:entropy}
+
+We prove Eq.~\eqref{eq:thermolaw} for finite fixed $a\ge1$ and
+finite $x\ge0$ in Eq.~\eqref{eq:thermopath}. These paths have
+$b/s\to\infty$. All estimates below concern the full unselected
+sudden-quench state.
+
+\subsection{Total entropy and positive diagonal excess}
+
+The low thermal moments, Eq.~\eqref{eq:apwronskian}, and activated
+local estimate give, uniformly for $1\le h\le4$,
+\begin{equation}
+ q_h:=Z_h^{-1}\Tr F\ee^{-sA_{h,\ell}}
+ =\frac r s\frac{\dot m_h}{m_h^2}[1+o(1)]
+                         +\ee^{-hs}[1+o(1)].             \label{eq:apheight}
+\end{equation}
+Each error is relative to its own positive term. Exact Duhamel trace
+differentiation, with $\kappa=Z_4/Z_1$, then gives
+\begin{align}
+ \log\kappa&=-s\int_1^4q_h\dd h=-rD_F+o(r),\nonumber\\
+ 1-\kappa&=rD_F+o(r),\qquad\nonumber\\
+ I&=3sq_1+\log\kappa=rM_F+3s\ee^{-s}+o(r).                \label{eq:aptotalentropy}
+\end{align}
+The integrated activated term is $O(\ee^{-s})=o(r)$. Entropies are
+finite at finite parameters: $\Tr B\rho<\infty$ follows from the
+bounded perturbation and the initial Gibbs mean energy; a Gibbs
+variational bound gives finite final diagonal entropy. Thus $I=P+J$
+is an equality between finite quantities.
+
+Write $p_j=\ip{\phi_j}{\rho\phi_j}$,
+$q_j=Z_4^{-1}\ee^{-s\lambda_j}$, $t_j=p_j/q_j$, and
+$d_j=p_j-\kappa q_j$. Scalar Jensen in the spectral measure of $A$
+for $\phi_j$ gives
+\begin{equation}
+ \begin{gathered}
+ d_j\ge0,\quad t_j\ge\kappa,\quad
+ \sum_jd_j=1-\kappa=O(r),\quad\\
+ \sum_j|p_j-q_j|\le2(1-\kappa)=O(r).
+ \end{gathered}                                         \label{eq:apexcess}
+\end{equation}
+Indeed $\langle A-\lambda_j\rangle_j=-3\langle F\rangle_j$ and
+$\langle(A-\lambda_j)^2\rangle_j=9\langle F^2\rangle_j$ exactly.
+No operator-monotonicity assertion for exponentials is used. Put
+$G(t)=t\log t-t+1$. Then $P=\sum_jq_jG(t_j)$ has nonnegative
+summands and $G(t)\le(t-1)\log t$ for $t\ge1$. The whole sector
+$\kappa\le t_j<1$ costs $O((1-\kappa)^2)=O(r^2)$.
+
+\subsection{Low final energies and the moving crossover}
+
+For every fixed $c<4$,
+$\sup_{\lambda_j\le c}\langle F\rangle_j\le C_{F,c}r$.
+At small energy this is Eq.~\eqref{eq:apamp}; above a small cutoff
+left sine normalization, compact transfer, and uniform right-plateau
+decay prove it. Taylor's scalar exponential bound and the two exact
+moments therefore imply, for $c<1/a$,
+\begin{equation}
+ \kappa\le t_j\le\kappa[1+C_{F,c}r(s+s^2\ee^{sc})]=1+o(1)
+                          \quad(\lambda_j\le c).          \label{eq:aplowentropy}
+\end{equation}
+Since $G(t)=o(1)|t-1|$ uniformly on this neighborhood of one,
+Eq.~\eqref{eq:apexcess} makes the complete low sea contribute $o(r)$.
+
+Put $t_0=1/a$ and $\mathcal K=[3t_0/4,5t_0/4]\subset(0,4)$.
+We require the pointwise bound
+\begin{equation}
+             0\le d_j\le C_{F,a}r^2/s
+                              \quad(\lambda_j\in\mathcal K). \label{eq:apcollarexcess}
+\end{equation}
+The nonnegative scalar remainder
+$R_{s,\lambda}(E)=\ee^{-sE}-\ee^{-s\lambda}
++s\ee^{-s\lambda}(E-\lambda)$ gives the exact identity
+\begin{align}
+ \langle\ee^{-sA}\rangle_j-\ee^{-s\lambda_j}
+ &=3s\ee^{-s\lambda_j}\langle F\rangle_j\nonumber\\
+ &\quad+\sum_nR_{s,\lambda_j}(E_n)|\ip{\phi_j}{u_n}|^2. \label{eq:apremainder}
+\end{align}
+Choose a fixed low cutoff $\delta$ below $\mathcal K$. For $E<\delta$,
+$R\le\ee^{-sE}$ and
+\begin{equation}
+ (\lambda_j-E)\ip{\phi_j}{u_E}
+       =3u_E(-d)\ip{\phi_j}{Ff_{1,E,\ell}}.              \label{eq:apbandidentity}
+\end{equation}
+The denominator is separated from zero; compact transfer and plateau
+decay bound the last inner product squared by $Cr$. Equation
+\eqref{eq:apmom} therefore pays this entire low sum by $Crs^{-3/2}$.
+For $E\ge\delta$, Taylor's theorem gives
+$R\le(s^2/2)\ee^{-s\delta}(E-\lambda_j)^2$; the exact second moment
+pays all remaining initial energies by $Crs^2\ee^{-s\delta}$.
+The linear term is smaller. Division by $Z_1\asymp1/(r\sqrt s)$
+proves Eq.~\eqref{eq:apcollarexcess}.
+
+There are $O(1/r)$ levels in $\mathcal K$, so its collar
+$|\lambda_j-t_0|\le\eta$ has total $d_j=O(r/s)$. Moreover
+$t_j\le1+Cr\ee^{s\lambda_j}s^{-3/2}$, whose positive logarithm is
+at most $a\eta\mathcal L+o(\mathcal L)+C$. For $t_j\ge1$ use
+$q_j(t_j-1)\le d_j$; for the other indices retain the $O(r^2)$
+bound. Consequently
+\begin{equation}
+ \limsup\frac1r\sum_{|\lambda_j-t_0|\le\eta}q_jG(t_j)
+                                  \le C_{F,a}\eta.        \label{eq:apentropycollar}
+\end{equation}
+The constant is independent of small fixed $\eta$. This logarithmic
+estimate cannot be replaced by weak convergence alone.
+
+\subsection{Compact bands and activated final energy}
+
+Fix $t_0<c<4$, $M>8$, and $\mathsf P=\one_{[c,M]}(B_\ell)$.
+If $a>1$, choose $t_0<e_0<\min(c,1)$; Eq.~\eqref{eq:aptail}
+makes the full initial mass above $e_0$ be $o(r/s)$. Below it,
+Eq.~\eqref{eq:apbandidentity}, a reduced resolvent analytic at zero,
+and Eq.~\eqref{eq:apmom} give
+\begin{equation}
+ \begin{gathered}
+ \left\|\mathsf P\rho\mathsf P-\frac r s\ket{v_\ell}\bra{v_\ell}
+                \right\|_1=o(r/s),\qquad\\
+ v_\ell=\frac3{m_1}\mathsf P B_\ell^{-1}(Ff_{1,0,\ell}).
+ \end{gathered}                                         \label{eq:aprankband}
+\end{equation}
+The rest of the subthreshold inputs is exponentially paid by
+Eq.~\eqref{eq:apcollar}. Strong resolvent convergence and absence of
+source atoms imply
+\begin{equation}
+ \norm{v_\ell}^2\to\nu_F([c,M]),\qquad
+ \ip{v_\ell}{B_\ell v_\ell}\to\int_{[c,M]}E\nu_F(\dd E). \label{eq:apbandmoments}
+\end{equation}
+There are $O_M(1/r)$ band levels. Each final normalized eigenfunction
+has left sine coefficient $O(\sqrt r)$ and, after compact transfer,
+a right piece bounded by $C\sqrt r(1+x-d)$. This includes energy
+four: below it the right piece decays, at it it is linear, and above
+it $|\sin(kx)|/k\le x$. Exponential decay of the zero-energy source
+then gives $|\ip{\phi_j}{v_\ell}|^2\le C_{F,c,M}r$.
+The normalized source energy distribution has entropy
+$\mathcal L+O(1)$, between its min-entropy and log-rank bounds.
+Measurement and finite-alphabet entropy continuity transfer this
+to the actual conditional band distribution with error $o(\mathcal L)$.
+
+If $m=\sum_{[c,M]}p_j$, then $m\sim(r/s)\nu_F([c,M])$ and
+$-\log m=\mathcal L+o(\mathcal L)$. Thus
+\begin{equation}
+ -\sum_{[c,M]}p_j\log p_j=m[2\mathcal L+o(\mathcal L)].   \label{eq:aptwologs}
+\end{equation}
+One logarithm is the conditional energy entropy and the other the
+rare total mass. With $\log Z_4=\mathcal L+o(\mathcal L)$ this gives
+\begin{equation}
+ \frac1r\sum_{[c,M]}q_jG(t_j)
+            \to\int_{[c,M]}(E-a^{-1})\nu_F(\dd E).       \label{eq:apbandentropy}
+\end{equation}
+The band Gibbs mass is $o(r/s)$, and replacing its KL sum by the
+nonnegative $G$ sum changes it by only $O(r/s)=o(r)$.
+
+For $a=1$ choose $1<c<5/4$. The same argument includes all initial
+$E<1$; keep
+$G_\ell=Z_1^{-1}\mathsf P\one_{[1,\infty)}(A_\ell)
+\ee^{-sA_\ell}\mathsf P$ separately. Activated input energy
+concentrates at one by Eqs.~\eqref{eq:apheat}--\eqref{eq:aptail},
+and its mean squared mass away from the right plateau vanishes by
+Eq.~\eqref{eq:aplocal}. The exact identity
+$(B_\ell-4)u_n=(E_n-1)u_n-3(1-F)u_n$ therefore concentrates final
+energy at four. The fixed band retains all leading activated mass,
+and
+\begin{align}
+ \Tr G_\ell&\sim\ee^{-s},\qquad
+ 0\le G_\ell\le(\ee^{-s}/Z_1)\mathsf P,\nonumber\\
+ (s/r)\Tr G_\ell&\to x,\qquad
+ (s/r)\Tr B_\ell G_\ell\to4x.                            \label{eq:apfour}
+\end{align}
+The positive comparator $(r/s)\ket{v_\ell}\bra{v_\ell}+G_\ell$
+approximates the band covariance in trace norm by $o(r/s)$.
+Its normalized measured source weights are $O(r)$ and its background
+weights are $O(r\sqrt s)$. Its conditional entropy is consequently
+still $\mathcal L+o(\mathcal L)$; no source/background orthogonality
+is required. The mass coefficient is $\nu_F([c,M])+x$ and the energy
+coefficient is $\int_{[c,M]}E\nu_F(\dd E)+4x$. Repeating
+Eq.~\eqref{eq:aptwologs} gives
+\begin{equation}
+ \frac1r\sum_{[c,M]}q_jG(t_j)
+              \to\int_{[c,M]}(E-1)\nu_F(\dd E)+3x.       \label{eq:apactivatedentropy}
+\end{equation}
+
+\subsection{The entire final-energy tail}
+
+For initial $E<1$ and $M\ge8$, spectral calculus and the exact
+overlap identity give
+\begin{equation}
+ \begin{gathered}
+ \ip{u_E}{B\one_{[M,\infty)}(B)u_E}\\
+ =9\ip{Fu_E}{\one_{[M,\infty)}(B)B(B-E)^{-2}Fu_E}\\
+ \le CM^{-1}\norm{Fu_E}^2.
+ \end{gathered}                                         \label{eq:apenergytail}
+\end{equation}
+For $1\le E\le2$ use Eq.~\eqref{eq:apshiftthree} instead, with
+$1-F$ replacing $F$. Inputs above two have prepared mean final
+energy $O(\ee^{-2s})$, by heat-weight splitting,
+Eq.~\eqref{eq:aptail}, and $B=A+3F$. Thus
+\begin{equation}
+ \begin{gathered}
+ \sum_{\lambda_j\ge M}\lambda_jp_j\\
+ \begin{aligned}
+ &\le\frac{C_Fr}{sM}
+ +\frac{C_F\ee^{-s}}M(s^{-1/2}+r\sqrt s+\ee^{-s})\\
+ &\quad+C_F\ee^{-2s}.
+ \end{aligned}
+ \end{gathered}                                         \label{eq:apfullenergytail}
+\end{equation}
+For $t_j\ge1$, $q_jG(t_j)\le p_j(s\lambda_j+\log Z_4)$;
+the other indices cost $O(r^2)$. Tail probability is at most tail
+energy divided by $M$. Bounded $\Xi$ now gives
+\begin{equation}
+ \limsup\frac1r\sum_{\lambda_j\ge M}q_jG(t_j)
+                                      \le C_{F,a}/M.     \label{eq:apentropytail}
+\end{equation}
+Partition the final spectrum below $t_0-\eta$, in its collar,
+between $t_0+\eta$ and $M$, and above $M$. All summands are
+nonnegative. Take the device limit first, then $\eta\downarrow0$,
+then $M\to\infty$. Equations~\eqref{eq:aplowentropy},
+\eqref{eq:apentropycollar}, \eqref{eq:apbandentropy} or
+\eqref{eq:apactivatedentropy}, and \eqref{eq:apentropytail} prove
+$P/r\to\int(E-a^{-1})_+\nu_F(\dd E)+3x$. The finite first moment
+permits exhaustion. Subtracting this result from
+Eq.~\eqref{eq:aptotalentropy} proves Eq.~\eqref{eq:thermolaw}.
+
+\section{The sharp-wall infrared work contribution}
+\label{app:infrared}
+
+We prove Eqs.~\eqref{eq:abscap}--\eqref{eq:negative} under the
+basic regime with $\Xi=O(1)$. In this appendix $F=\one_{x>0}$,
+$N=\ell/\sqrt s$, and $O_{nj}=\ip{\phi_j}{u_n}$.
+
+\subsection{Exact low-level overlaps}
+
+The actual subbarrier Sturm labels obey
+\begin{align}
+ \ell k_n+\delta_1(k_n)&=n\pi,\qquad
+ \ell q_j+\delta_4(q_j)=j\pi,\nonumber\\
+ \delta_h(k)&=\arctan\frac{k\tanh(\ell\sqrt{h-k^2})}
+                                  {\sqrt{h-k^2}}.        \label{eq:apsharpphase}
+\end{align}
+On fixed small compact energy intervals the normalized left pieces
+are $a_h(k)\sin(k(x+\ell))$, with
+$a_h(k)=\sqrt{2r}[1+O(r)]$ and
+$\sin\delta_h(k)=(k/\sqrt h)[1+O(\ee^{-b_0\ell})]$.
+The right pieces are the interface values times
+$\sinh(\sqrt{h-k^2}(\ell-x))/\sinh(\ell\sqrt{h-k^2})$.
+Their cross integral equals
+$[\sqrt{1-k^2}+\sqrt{4-q^2}]^{-1}+O(\ell\ee^{-b_0\ell})$.
+Hence, for $j\ne n$,
+\begin{align}
+ |q_j^2-k_n^2|\,|O_{nj}|^2
+ &=\frac{r^2k_n^2q_j^2}{|q_j^2-k_n^2|}\nonumber\\
+ &\quad[1+O(k_n^2+q_j^2+r+\ell\ee^{-b_0\ell})].          \label{eq:apoffdiag}
+\end{align}
+The numerator before dividing by the gap is
+$3\ip{\phi_j}{Fu_n}=\pm rk_nq_j[1+O(k_n^2+q_j^2+r+
+\ell\ee^{-b_0\ell})]$: the leading factor is
+$3(2r)k_n(q_j/2)/(1+2)$.
+
+Put $m=j-n$. Subtracting the exact phases gives
+\begin{align}
+ (\ell+\delta_4'(\xi))(q_j-k_n)&=\pi m+d(k_n),\nonumber\\
+ d(k)&=\delta_1(k)-\delta_4(k)
+                \nonumber\\
+ &=k/2+O(k^3+k\ee^{-b_0\ell}).                            \label{eq:apgap}
+\end{align}
+For $m\ne0$ and $k/2\le q_j\le2k$, this implies
+$|q_j-k|^{-1}=\ell(\pi|m|)^{-1}[1+O(k/|m|+r)]$.
+Since $q^2/(q+k)=k/2+O(|q-k|)$, each near-index term in
+Eq.~\eqref{eq:apoffdiag} has leading value $rk^3/(2\pi|m|)$.
+The two index ranges have sizes $\ell k/\pi+O(1)$ and
+$\ell k/(2\pi)+O(1)$, so their harmonic sums total
+$2\log(\ell k)+O(1)$. An empty lower range for the first few modes
+is harmless: then $\ell k$ is bounded and is at least $\pi/2$.
+
+For all sufficiently small $0<\delta<\delta_0$ and $k^2<\delta/16$,
+the uniform result is
+\begin{equation}
+ \begin{gathered}
+ \sum_{j\ne n,\ q_j^2<\delta}|q_j^2-k^2||O_{nj}|^2\\
+   =\frac{rk^3}{\pi}\log(\ell k)+R_{n,\delta},\\
+ \begin{aligned}
+ |R_{n,\delta}|&\le Cr\{k^2\sqrt\delta+k^3
+                  +k^5\log(2+\ell k)\\
+ &\quad+(r+\ell\ee^{-b_0\ell})k^3\log(2+\ell k)\}.
+ \end{aligned}
+ \end{gathered}                                         \label{eq:apharmonic}
+\end{equation}
+The phase correction costs $O(rk^4\sum m^{-2})$. Replacing
+$q^2/(q+k)$ costs $O(r^2k^2(\ell k+1))=O(rk^3)$, because
+$k\ge\pi r/2$. The relative $k^2$ correction multiplies the
+harmonic sum and produces the $k^5$ term. In the far ranges,
+$q<k/2$ costs $O(rk^3)$ since $q^2/|q^2-k^2|\le Cq^2/k^2$;
+$2k<q<\sqrt\delta$ costs $O(rk^2\sqrt\delta)$ by counting levels.
+This proves Eq.~\eqref{eq:apharmonic} without integrating across
+a discrete spectral pole.
+
+\subsection{Every thermal sector and additive error control}
+
+For every fixed $d_0<1$, the complete conditional uncapped mean obeys
+\begin{equation}
+ \begin{gathered}
+ \sum_j|\lambda_j-E_n||O_{nj}|^2
+ \le C_{d_0}r[k_n^2+k_n^3\log(2+\ell k_n)]\\
+                                      \quad(E_n\le d_0).
+ \end{gathered}                                         \label{eq:apworkbound}
+\end{equation}
+Below a fixed final cutoff less than four, use the numerator bound
+$Crkq$, the spacing
+$|q_j-k_n|\ge\pi r(|j-n|-1/2)$, the same near/far split, and the
+paired shift $O(rE_n)$. Above that cutoff the gap is separated from
+zero; $|\omega|\le C\omega^2$ and
+\begin{equation}
+ \sum_j(\lambda_j-E_n)^2|O_{nj}|^2=9\norm{Fu_n}^2
+                                                               \label{eq:apsecondgap}
+\end{equation}
+pay its entire infinite range by $CrE_n$.
+
+Equation~\eqref{eq:apcollar} bounds
+$\sum_{1/2\le E_n<1}\norm{Fu_n}^2$ uniformly, and $N_A(1)=O(\ell)$.
+By Cauchy--Schwarz, the conditional absolute first moment is at most
+$3\norm{Fu_n}$. Thus the complete collar $[d_0,1)$, $d_0>1/2$,
+costs after Gibbs normalization and scaling at most
+\begin{equation}
+ Cs^{3/2}\sqrt\ell\ee^{-sd_0}
+       \le Cs\ee^{-s(d_0-1/2)}=o(1),                      \label{eq:apworkcollar}
+\end{equation}
+because bounded $\Xi=s\ell\ee^{-s}$ implies $\ell\le C\ee^s/s$.
+For $s^{-1/2}\le E_n<d_0$, Eq.~\eqref{eq:apworkbound} and a
+Gaussian heat-weight split give a polynomial in $s$ times
+$\ee^{-\sqrt s/2}$. The count's factor $\ell$ cancels against $Z$,
+and $\log\ell=O(s)$; this intermediate sector is also $o(1)$.
+
+For activated inputs, Eqs.~\eqref{eq:apheat} and
+\eqref{eq:apsharpactivated} imply $T/Z\sim\ee^{-s}$ and
+$T_-/T=O(r\sqrt s+s^{-1/2})$. Both $h_c(w)=\min(|w|,c)$ and
+$h_\infty(w)=|w|$ are one-Lipschitz. Equation~\eqref{eq:apshiftthree}
+and Cauchy--Schwarz therefore give
+\begin{equation}
+ \begin{aligned}
+ &\Big|\sum_{E_n\ge1}\ee^{-sE_n}\sum_jh_c(\lambda_j-E_n)|O_{nj}|^2\\
+ &\quad-\min(3,c)T\Big|\le3\sqrt{TT_-}.
+ \end{aligned}                                         \label{eq:apactivatedwork}
+\end{equation}
+Its scaled error is $O(\Xi\sqrt{r\sqrt s+s^{-1/2}})=o(1)$, and
+its main contribution is $\min(3,c)\Xi$; for uncapped work replace
+the coefficient by three. Every activated input and final energy
+is included in this estimate.
+
+Only $E_n<s^{-1/2}$ now remains. Gaussian Stieltjes summation gives
+\begin{align}
+ s\langle E_n\one_{E_n<s^{-1/2}}\rangle_\rho&\to\tfrac12,
+ \nonumber\\
+ s\langle E_n^2\one_{E_n<s^{-1/2}}\rangle_\rho&\to0,\nonumber\\
+ \frac s\pi\langle k_n^3\log(\ell k_n)
+                    \one_{E_n<s^{-1/2}}\rangle_\rho
+     &=\frac{\log N}{\pi^{3/2}\sqrt s}+o(1).              \label{eq:aplogmoment}
+\end{align}
+For the logarithmic moment set $v=\sqrt s\,k$. Its continuum numerator
+is $(\ell/\pi)s^{-2}\int_0^\infty v^3\ee^{-v^2}
+(\log N+\log v)\dd v$. The first integral is $1/2$, the second
+finite. The test's total variation is
+$O(s^{-3/2}(1+\log N))$, giving an additive scaled quadrature error
+$O(r(1+\log N))=o(1)$. The relative partition error
+$O(r\sqrt s+\ee^{-s})$ costs only
+$O(r\log N+\ee^{-s}\log N/\sqrt s)=o(1)$ against the possibly
+diverging main term. The moving Gaussian tail vanishes because
+$\log\ell=O(s)$. Unnormalized fixed-cutoff heat errors carry an
+$\ell$ prefactor; their normalized contributions are the errors
+asserted to vanish here.
+
+The thermal averages of the remainders in
+Eq.~\eqref{eq:apharmonic} obey
+\begin{align}
+ s\langle k^2\sqrt\delta\rangle&=O(\sqrt\delta),\nonumber\\
+ s\langle k^3\rangle&=O(s^{-1/2}),\nonumber\\
+ s\langle k^5\log(2+\ell k)\rangle
+                  &=O(\log\ell/s^{3/2})+o(1)=o(1).       \label{eq:aplogerrors}
+\end{align}
+The last remainder also vanishes, using $r\sqrt s\to0$,
+$\sqrt s=o(\ell)$ and exponential decay in $\ell$. These estimates
+are additive even when $\log N/\sqrt s$ diverges.
+
+\subsection{Paired shift, source matching and closure}
+
+At $m=0$, Eq.~\eqref{eq:apgap} gives
+\begin{equation}
+ \begin{aligned}
+ \lambda_n-E_n&=rE_n[1+O(E_n+r+\ee^{-b_0\ell})],\qquad\\
+ |O_{nn}|^2&=1+O(E_n+r).
+ \end{aligned}                                         \label{eq:appaired}
+\end{equation}
+For the second bound choose signs so the left sine pieces agree:
+their normalized difference has norm
+$O(r+\ell|q_n-k_n|)=O(r+k_n)$; their right norms are
+$O(\sqrt r\,k_n)$. The paired contribution consequently tends to
+$1/2$ by Eq.~\eqref{eq:aplogmoment}.
+
+Fix $0<\delta<\min(\delta_0,c)$. The remaining final modes below
+$\delta$ contribute $\log N/(\pi^{3/2}\sqrt s)+R_\delta$, with
+$\limsup|R_\delta|\le C\sqrt\delta$. For all final energies above
+$\delta$ use the bounded reduced spectral function
+\begin{equation}
+ G_{E,\delta}(z)=\one_{z\ge\delta}\frac{h_c(z-E)}{(z-E)^2}.
+                                                               \label{eq:apreducedtest}
+\end{equation}
+For $E<\delta/2$ it is uniformly bounded and differs from
+$G_{0,\delta}$ by $O_\delta(E)$ in supremum norm. For uncapped work
+it is simply $\one_{z\ge\delta}/(z-E)$. Exact matching gives
+$Fu_n/(\sqrt{2r}k_n)\to f$ in $L^2$, uniformly over the moving
+low-input window. The overlap identity implies
+\begin{align}
+ \sum_{\lambda_j\ge\delta}h_c(\lambda_j-E_n)|O_{nj}|^2
+ &=9\ip{Fu_n}{G_{E_n,\delta}(B_\ell)Fu_n}\nonumber\\
+ &=2rE_n[\Phi_\delta(c)+o(1)],\nonumber\\
+ \Phi_\delta(c)&=\int_{[\delta,\infty)}\min(E,c)\nu(\dd E).
+                                                               \label{eq:apsourcematch}
+\end{align}
+Strong resolvent convergence applies at the cutoff because the
+source has no atom there; the bounded function includes the whole
+infinite final range. Thermal averaging gives $\Phi_\delta(c)$.
+The omitted source first moment is $O(\sqrt\delta)$. Combine these
+three disjoint final sectors and the preceding input bounds, take
+the device limit, then send $\delta\downarrow0$. This proves
+Eq.~\eqref{eq:abscap}. The same proof, directly with the uncapped
+test and $\int E\nu(\dd E)=1$, proves Eq.~\eqref{eq:absolute}.
+
+The exact signed mean is $3\Tr\rho F$. Its low and activated
+contributions are $3r/(2s)$ and $3\ee^{-s}$, respectively, proving
+the signed formula in Eq.~\eqref{eq:negative}. Subtract it from
+the absolute-work result. As an independent sign check, the negative
+near-index sum uses just $m<0$, half the harmonic coefficient; far
+negative terms cost $O(rk^3)$, and the activated negative mean is
+$o(1)$ after scaling since $(-w)_+$ is one-Lipschitz and vanishes
+at three. Finally, when $s/\mathcal L\to a>1$,
+$\log N/\sqrt s\sim\sqrt s/a$ and $\Xi\to0$, which proves both
+ratios in Eq.~\eqref{eq:ratio}.
+
+\section{Source reconstruction and frequency rejection}
+\label{app:reconstruction}
+
+\subsection{Positive transform, finite window and frequency rejection}
+
+For a positive measure on $(0,\infty)$ with first moment $M<\infty$,
+$C(t)$ and $\Phi(c)$ are finite and $|C'(t)|\le M/2$ by dominated
+differentiation. Integration by parts and the Dirichlet sine integral
+give $\int_0^\infty(1-\cos ut)t^{-2}\dd t=\pi|u|/2$.
+Product-to-sum consequently gives
+\begin{equation}
+ \int_0^\infty\frac{(1-\cos ct)(1-\cos Et)}{t^2}\dd t
+                          =\frac\pi2\min(c,E).            \label{eq:apcosine}
+\end{equation}
+Tonelli applied to the nonnegative integrand proves
+Eq.~\eqref{eq:positive}. Its kernel has mass $2c$, so the
+uniform-additive-error constant $2c$ is exact.
+
+If $\nu'(E)\le K E^{-3/2}$ for $0<E<E_*$, then
+$C(t)\le K\sqrt{\pi/2}\sqrt t+M/E_*$. Therefore the positive
+omitted time tail satisfies
+\begin{equation}
+ 0\le\Phi(c)-\Phi_T(c)
+ \le\frac{16K}{\sqrt{2\pi T}}+\frac{8M}{\pi E_*T}.      \label{eq:aptimetail}
+\end{equation}
+For exact midpoint weights on a partition of maximum mesh $\Delta$,
+source sample errors at most $\varepsilon$ give
+\begin{equation}
+ \left|\sum_iw_i\widehat C(t_i)-\Phi(c)\right|
+ \le\frac{16K}{\sqrt{2\pi T}}+\frac{8M}{\pi E_*T}
+                  +2c\varepsilon+\frac{cM\Delta}{2}.     \label{eq:apquadrature}
+\end{equation}
+The last term uses $|C'|\le M/2$, a maximal midpoint distance
+$\Delta/2$, and $\sum w_i\le2c$.
+
+These constants can be explicit for all fixed-width profiles.
+Let $n_d=2d+1/2$, $m_*=(2d+1)^{-1}$ and
+\begin{equation}
+ E_*=\min\{1/4,\gamma_d/4,m_*/(8n_d)\},\qquad
+ K=\frac{144n_d^2}{\pi m_*^4}.                            \label{eq:approfileconstants}
+\end{equation}
+Equation~\eqref{eq:apode} implies
+$\norm{f_{4,E}}\le2\sqrt{n_d}$ and $m_4(E)\ge m_*/2$
+on this interval; also $\norm g\le\sqrt{n_d}$. Substitution into
+Eq.~\eqref{eq:apdensity} proves the stated threshold bound.
+The zero-energy energy identity gives $\dot m_1\le m_1$, hence
+$M_F\le3/m_*$.
+
+For a sharper subsequent tail, if
+$|\nu'(E)-kE^{-3/2}|\le BE^{-1/2}$ below $E_*$, the signed
+difference from $kE^{-3/2}\dd E$ on the entire positive axis has
+total variation at most
+$R_0=2B\sqrt{E_*}+M/E_*+2k/\sqrt{E_*}$. Thus
+$C(t)=A\sqrt t+R(t)$, $A=k\sqrt{\pi/2}$, $|R(t)|\le R_0$.
+An integration by parts of the cosine tail yields
+\begin{equation}
+ \left|\Phi(c)-\Phi_T(c)-\frac{8A}{\pi\sqrt T}\right|
+ \le\frac{8A}{\pi cT^{3/2}}+\frac{8R_0}{\pi T}.           \label{eq:apleadingtail}
+\end{equation}
+For the actual source $A=D_F^2/\sqrt{2\pi}$; the remainder is
+not uniform as the cap tends to zero.
+
+Exact all-time source data determine all caps, then the measure via
+$\Phi'_+(c)=\nu((c,\infty))$ and
+$\Phi'_-(c)=\nu([c,\infty))$, by dominated one-sided difference
+quotients away from zero. This is not a stable inversion in a strong
+measure norm. In particular adding $\varepsilon\delta_H$ changes
+$C$ uniformly by at most $\varepsilon$ but changes its first moment
+by $\varepsilon H$. Resonance aliasing in the main text therefore
+does not contradict all-time injectivity. It can even preserve two
+moments with smooth densities: take a smooth probability density
+$\psi$ supported in $(0,c)$, of mean $c/2$, and a common base
+$kE^{-3/2}\ee^{-E}\dd E$. Adding respectively
+$\beta(3T_3\psi+T_9\psi)/4$ and
+$\beta(\psi+3T_6\psi)/4$, where $T_j$ translates by $j$, gives
+equal first and second moments and identical resonant samples, but
+caps differing by $\beta c/8$. These are measure-class examples,
+not an asserted pair of realizable wall profiles.
+
+For the actual finite work probability, Eq.~\eqref{eq:apcosine}
+also proves the exact all-time identity stated after
+Eq.~\eqref{eq:positive}. For fixed $0<\eta<c$ put
+$h_{\eta,c}(w)=\min(|w|,c)-\min(|w|,\eta)$.
+Its quotient by $w^2$, set to zero at zero, is bounded continuous
+with norm at most $1/(4\eta)$. Equation~\eqref{eq:weightedlaw}
+therefore proves Eq.~\eqref{eq:reject}. Splitting the source cap at
+$\eta$ and $E_*$ gives the cutoff budget
+\begin{equation}
+ 0\le\Phi_F(\eta)\le4K\sqrt\eta+\eta M_F/E_*
+                               \quad(\eta\le E_*).        \label{eq:apcutoffbudget}
+\end{equation}
+Subtracting two absolutely integrable cosine identities gives its
+signed time kernel. Its total absolute weight is at most
+$2(c+\eta)$; since $p_{r,s}\le1$, the scaled actual-device tail
+beyond $T$ is at most $8(s/r)/(\pi T)$. The ordered limiting
+filter does not supply an uncharged finite observation protocol.
+
+% Standalone scientific appendices; insert before the bibliography.
+% Uses only macros already defined in the root manuscript preamble.
+\section{Resonant source selection and complete entropy bounds}
+\label{app:control}
+
+We prove the actual conditional-state assertion, including its
+infinite-dimensional entropy limit. All operators in this appendix
+are in the boundary coordinate on $(-\ell,\ell)$, with
+$\ell=1/r$. The resonance $\tau=2\pi n/3$ is fixed, where $n$ is a
+positive integer. Constants may depend on this resonance and on a
+fixed smooth profile, but not on $\ell$ or $s$.
+For a density operator $\sigma$ and $q>0$, $q\ne1$, the
+R\'enyi entropy is $S_q(\sigma)=\log\Tr\sigma^q/(1-q)$;
+the order-one entropy is $S(\sigma)=-\Tr\sigma\log\sigma$.
+
+\subsection{The sharp low-energy covariance}
+
+For the sharp wall, put $Q=\one_{(0,\ell)}$ and
+$A=-\partial_x^2+Q$, $B=-\partial_x^2+4Q$. At $E=k^2<1$ define
+\begin{align}
+ \kappa&=\sqrt{1-E},\qquad d(E)=\kappa\coth(\kappa\ell),\nonumber\\
+ f_{E,\ell}(x)&=\frac{\sinh[\kappa(\ell-x)]}
+                         {\sinh(\kappa\ell)}\one_{(0,\ell)}(x).
+                                                        \label{eq:ctrlf}
+\end{align}
+Matching the left sine and right hyperbolic sine gives
+$k\ell+\arctan[k/d(k^2)]=j\pi$. If $u_E$ is normalized and
+$b_E=u_E(0)$, direct integration gives
+\begin{align}
+ Qu_E&=b_E f_{E,\ell},\qquad |b_E|^2=\frac{2E}{D_\ell(E)},\nonumber\\
+ D_\ell(E)&=\ell+[\ell-2\ell E]\operatorname{csch}^2(\kappa\ell)
+                       +\frac{\coth(\kappa\ell)}\kappa.
+                                                        \label{eq:ctrlamp}
+\end{align}
+On $0\le E\le1/2$, one has
+$\ell\le D_\ell(E)\le\ell+3$ for large $\ell$.
+The phase is increasing and its count differs from $\ell k/\pi$
+by at most one. Consequently, for each fixed integer $j\ge0$,
+\begin{equation}
+ M_j:=\sum_{E<1/2}|b_E|^2\ee^{-sE}E^j
+ =\frac{\Gamma(j+3/2)}\pi s^{-j-3/2}[1+o(1)].
+                                                        \label{eq:ctrlmom}
+\end{equation}
+Indeed, Stieltjes integration of $k^{2j+2}\ee^{-sk^2}$ against
+the count gives discrepancy at most twice its maximum. After
+multiplication by $2/\ell$, its relative size is
+$O_j(\sqrt s/\ell)$. The normalization replacement costs
+$O(\ell^{-1})$, and the omitted Gaussian integral above
+$k=1/\sqrt2$ is exponentially small. These errors vanish in
+Eq.~\eqref{eq:regime}. Write
+$m_s=(2\sqrt\pi s^{3/2})^{-1}$, so $M_0\sim m_s$.
+
+Duhamel's formula gives the exact column identity
+\begin{equation}
+ K_tu_E=b_E\ee^{-itE}V_\ell(E),\qquad
+ V_\ell(E)=\frac32h_t(B-E)f_{E,\ell}.
+                                                        \label{eq:ctrlcolumn}
+\end{equation}
+The low accepted covariance is thus
+\begin{equation}
+ S=\sum_{E<1/2}|b_E|^2\ee^{-sE}
+                 \ket{V_\ell(E)}\bra{V_\ell(E)}.
+                                                        \label{eq:ctrlcov}
+\end{equation}
+Different initial eigenstates contribute positive outer products;
+their amplitudes are not coherently averaged.
+
+Let $T_\ell$ be the Dirichlet inverse of $-\partial_x^2+1$ on
+$(0,\ell)$. The inhomogeneous right boundary problem gives
+$f_{E,\ell}=(I-ET_\ell)^{-1}f_{0,\ell}$, with
+$\norm{T_\ell}\le1$ and $\norm{f_{0,\ell}}\le1/\sqrt2$.
+Using $h_t(B-E)=-i\int_0^t\ee^{-iuB}\ee^{iuE}\dd u$, the
+Taylor coefficients of $V_\ell(E)=\sum_{j\ge0}E^jV_{j,\ell}$ obey
+\begin{equation}
+ \norm{V_{j,\ell}}\le M_t:=\frac3{2\sqrt2}\int_0^t\ee^u\dd u.
+                                                        \label{eq:ctrltaylor}
+\end{equation}
+Therefore
+$\norm{S-M_0\ket{V_\ell(0)}\bra{V_\ell(0)}}_1\le C_tM_1$.
+Increasing-interval Dirichlet form convergence implies strong
+resolvent convergence to $B_\infty=-\partial_x^2+4\one_{x>0}$
+and hence strong propagator convergence at every fixed time.
+Since $f_{0,\ell}\to f=\ee^{-x}\one_{x>0}$ in $L^2$,
+\begin{equation}
+ V_\ell(0)\longrightarrow v_t=\frac32h_t(B_\infty)f,
+ \qquad\norm{v_t}^2=C(t)>0.                              \label{eq:ctrlsource}
+\end{equation}
+For positivity, $B_\infty$ has no eigenvalues: positivity excludes
+negative ones, and at nonnegative energy its free left solution is
+affine or oscillatory and cannot be square integrable unless zero.
+ODE uniqueness then makes the whole solution zero. Its spectral
+measure for nonzero $f$ is atom-free, whereas the real zero set of
+$h_t$ is countable. This proves the strict inequality in
+Eq.~\eqref{eq:ctrlsource}. The actual comparison projection is
+$\Pi_{r,t}=\ket{V_\ell(0)}\bra{V_\ell(0)}/\norm{V_\ell(0)}^2$.
+
+\subsection{An all-energy boundary estimate at resonance}
+
+Let $H=-\partial_x^2+V$, $0\le V\le v$, on an interval with a
+unit subinterval adjacent to the point under consideration.
+For $R=(H+1)^{-1}$, spectral calculus and the differential equation
+give
+\begin{equation}
+ \begin{gathered}
+ \norm{Rg}\le\norm g,\quad\\
+ \norm{(Rg)'}\le\tfrac12\norm g,\quad\\
+ \norm{(Rg)''}\le(v+2)\norm g.                            \label{eq:ctrlres}
+ \end{gathered}
+\end{equation}
+The elementary endpoint inequality
+$|h(0)|^2\le2\norm h^2+\norm{h'}^2$ on a unit interval,
+applied to $Rg$ and $(Rg)'$, gives by Parseval
+\begin{equation}
+ \sum_E\frac{|u_E(0)|^2+|u'_E(0)|^2}{(1+E)^2}
+ \le D_v:=\frac{11}4+(v+2)^2.                            \label{eq:ctrltrace}
+\end{equation}
+This also defines the bounded resolvent-smoothed distributions
+$R\delta_0,R\delta'_0$. The constant is independent of total
+length, local level spacing, and threshold proximity. Separated
+remote Neumann conditions give the same estimate.
+
+At resonance the function
+\begin{equation}
+ q_\tau(z)=\frac{\ee^{-i\tau z}-1}{z(z-3)}                \label{eq:ctrlq}
+\end{equation}
+is entire. Green's identity on the controlled interval gives, for
+every actual initial and final eigenstate,
+\begin{align}
+ (\lambda-E)\ip{\phi_\lambda}{u_E}
+ &=3\ip{\phi_\lambda}{Qu_E},\nonumber\\
+ (\lambda-E-3)\ip{\phi_\lambda}{Qu_E}
+ &=-\overline{\phi_\lambda(0)}u'_E(0)
+              +\overline{\phi'_\lambda(0)}u_E(0).
+                                                        \label{eq:ctrlgreen}
+\end{align}
+Physical outer endpoint terms vanish by the Dirichlet conditions.
+Combining the identities, including their removable equal-energy
+values, proves
+\begin{equation}
+ K_\tau u_E=-\frac32\ee^{-i\tau E}q_\tau(B-E)
+                    [u'_E(0)\delta_0+u_E(0)\delta'_0].
+                                                        \label{eq:ctrlboundary}
+\end{equation}
+Its distributional meaning is fixed by
+$q_\tau(B-E)\delta_0^{(i)}=[q_\tau(B-E)(B+1)]
+(B+1)^{-1}\delta_0^{(i)}$, whose bracket is bounded.
+
+Near zero use $|\ee^{-i\tau x}-1|\le\tau|x|$; near three use
+the resonant version of that estimate; away from both points use
+the numerator bound two. These give
+$\sup_{x\in\mathbb R}(1+|x|)|q_\tau(x)|\le5\tau/2$.
+Since $1+\lambda\le(1+E)(1+|\lambda-E|)$, the input and output
+versions of Eq.~\eqref{eq:ctrltrace} imply, for each $d_0>0$,
+\begin{align}
+ &\Tr K_\tau\one_{[d_0,\infty)}(A)\ee^{-sA}K_\tau^*
+ \nonumber\\[-2pt]
+ &\hspace{15pt}\le C_\tau\sup_{E\ge d_0}\ee^{-sE}(1+E)^4
+ \le C_\tau(1+d_0)^4\ee^{-sd_0},                         \label{eq:ctrlhightrace}
+\end{align}
+where the last inequality holds for $s\ge4/(1+d_0)$.
+Taking $d_0=1/2$ pays the complete complement of
+Eq.~\eqref{eq:ctrlcov}, including every threshold and high mode.
+No box-volume factor remains.
+
+\subsection{All-index tails and entropy}
+
+The first $m$ Taylor vectors in Eq.~\eqref{eq:ctrltaylor} leave
+error at most $2M_\tau E^m$ on $0\le E\le1/2$. Positivity and
+the variational characterization of eigenvalue sums yield
+\begin{equation}
+ \sum_{j>m}\lambda_j(S)\le4M_\tau^2M_{2m}.               \label{eq:ctrllowtail}
+\end{equation}
+The actual cutoff gives $E^{2m}\le4^{-(m-1)}E^2$, so
+Eqs.~\eqref{eq:ctrlmom} and \eqref{eq:ctrlsource} imply
+\begin{equation}
+ \sum_{j>m}\lambda_j(S/\Tr S)
+ \le A_\tau s^{-2}4^{-(m-1)},\qquad m\ge1.               \label{eq:ctrllowgeo}
+\end{equation}
+Summing $-\lambda\log\lambda$ under this envelope, including the
+$O(s^{-2})$ deficit of the leading eigenvalue, proves
+$S(S/\Tr S)=O_\tau(s^{-2}\log s)$. For each fixed $0<q<1$ it
+also proves $\Tr(S/\Tr S)^q=1+O_{\tau,q}(s^{-2q})$.
+
+Write $G=K_\tau\one_{[1/2,\infty)}(A)\ee^{-sA}K_\tau^*$.
+The two vector curves
+$g_i(E)=q_\tau(B-E)\delta_0^{(i)}$, $i=0,1$, are norm-analytic
+on the strip $|\operatorname{Im}E|\le1$ and satisfy
+\begin{equation}
+ \norm{g_i(E)}\le A_\tau(1+|E|).                         \label{eq:ctrlstrip}
+\end{equation}
+Indeed the entire divided difference bounds $q_\tau$ near its
+removable points, while its quotient gives quadratic decay at large
+real part; hence $(1+|z|)|q_\tau(z)|$ is bounded on the strip.
+Factoring through the local resolvent vectors proves
+Eq.~\eqref{eq:ctrlstrip}.
+
+In the bin $[1/2+j,3/2+j)$ expand both curves at its midpoint on
+the radius-one circle. Retaining $m$ terms costs at most $2m$
+dimensions and has vector error $A_\tau(j+3)2^{-m}$.
+Equation~\eqref{eq:ctrltrace} bounds the sum of squared input
+boundary coefficients in the bin by $D_1(j+3)^2$. Retaining their
+Cauchy--Schwarz cross bound, the trace outside the approximation
+space is at most
+\begin{equation}
+ A_\tau(j+3)^4\ee^{-s(1/2+j)}4^{-m}.                    \label{eq:ctrlbin}
+\end{equation}
+Choose $m_j=M-j$ for $0\le j<M$ and none above. The total
+dimension is at most $M(M+1)$. Both the retained-bin errors and
+the omitted bins sum because $4\ee^{-s}<1$ for $s\ge2$.
+Thus
+\begin{align}
+ \sum_{k>M(M+1)}\lambda_k(G)&\le A_\tau\ee^{-s/2}4^{-M},\nonumber\\
+ \lambda_k(G)&\le A'_\tau\ee^{-s/2}\ee^{-c\sqrt k}.
+                                                        \label{eq:ctrlhightail}
+\end{align}
+This controls both complete input and final spectral tails.
+
+Let $T=\Tr(S+G)\sim C(\tau)m_s$ and $Y=G/T$.
+Its eigenvalues are bounded by
+$\varepsilon_s\ee^{-c\sqrt k}$ with
+$\varepsilon_s=O_\tau(s^{3/2}\ee^{-s/2})$.
+The monotonicity of $-x\log x$ below $1/\ee$ and summability
+of this envelope show
+\begin{equation}
+ \begin{gathered}
+ S(Y)=O_\tau(s^{5/2}\ee^{-s/2}),\qquad\\
+ \Tr Y^q=O_{\tau,q}(\varepsilon_s^q),\quad 0<q<1.
+                                                        \label{eq:ctrlhighentropy}
+ \end{gathered}
+\end{equation}
+Here $S(X)=-\Tr X\log X$ is also used for subnormalized positive
+operators. Positive-sum entropy bounds give
+\begin{equation}
+ S(\sigma_\tau)=O_\tau(s^{-2}\log s+s^{5/2}\ee^{-s/2})\to0.
+                                                        \label{eq:ctrlentropy}
+\end{equation}
+For $0<q<1$ use trace-power subadditivity; for $q>1$ the largest
+eigenvalue tending to one suffices. This proves every fixed positive
+R\'enyi limit. Finally,
+$Z=(1+\ee^{-s})\ell/(2\sqrt\pi\sqrt s)+O(1)$ by
+Dirichlet/Neumann splitting. Division of the accepted trace by
+this complete partition proves $p_\tau\sim C(\tau)r/s$.
+
+\subsection{Fixed smooth plateau profiles}
+
+We supply the complete smooth high-sector argument; smooth entropy
+is not inferred from the sharp trace bound. Suppose $F=0$ to the
+left of $-d$ and $F=1$ to the right of $d$, as in the main text.
+The right Dirichlet gap, boundary normalization, and moments are
+proved in Eqs.~\eqref{eq:apode}--\eqref{eq:apmom}.
+For explicit analytic radii one can take
+\begin{equation}
+ \delta_F=\min\left\{\frac14,\frac{\gamma_d}4,
+                   \frac1{8(2d+1)(2d+1/2)}\right\}>0.
+                                                        \label{eq:ctrldelta}
+\end{equation}
+The zero-energy right solution satisfies
+$\norm{f_{1,0,\ell}}^2\le2d+1/2$, and the resolvent series
+gives $\norm{f_{1,E,\ell}}\le2\sqrt{2d+1/2}$ for
+$|E|\le2\delta_F$.
+The exact source curve is
+\begin{equation}
+ V_\ell(E)=\frac32h_\tau(B-E)Ff_{1,E,\ell}.              \label{eq:ctrlsmoothsource}
+\end{equation}
+It is uniformly norm-analytic on that disk. Cauchy's estimate
+on radius $2\delta_F$, evaluated for $E\le\delta_F$, gives the
+same normalized geometric low tail as Eq.~\eqref{eq:ctrllowgeo}.
+The boundary moment has the factor $m_1^{-2}$, so its accepted
+trace is asymptotic to $C_F(\tau)m_s$.
+
+For the complete high sector split $F=F_c+Q_d$, where
+$F_c=F\one_{(-d,d)}$ and $Q_d=\one_{(d,\ell)}$.
+An exact all-energy identity is
+\begin{align}
+ K_\tau u_E=\frac32\ee^{-i\tau E}\bigl\{
+ &h_\tau(B-E)F_cu_E\nonumber\\[-2pt]
+ &-q_\tau(B-E)[u'_E(d)\delta_d+u_E(d)\delta'_d]\bigr\}.
+                                                        \label{eq:ctrlsmoothhigh}
+\end{align}
+The interface distributions result from the artificial split, not a
+discontinuity of $F$. The plateau identity
+$(B-E-3)Q_du_E=-u'_E(d)\delta_d-u_E(d)\delta'_d$, multiplied
+by the removable resonant quotient, proves the formula.
+
+On $[-d,d]$ write
+$u_E=u_E(d)\phi_E+u'_E(d)\psi_E$, where the two solutions have
+terminal data $(1,0)$ and $(0,1)$ at $d$. Their ODE integral
+series is entire in $E$, and first-order Gronwall gives a bound
+$\exp[2d(2+|E|)]$ on each solution and derivative.
+Thus Eq.~\eqref{eq:ctrlsmoothhigh} is $\ee^{-i\tau E}$ times
+two norm-analytic vectors with the actual boundary coefficients.
+On the radius-one circle centered at $\delta_F+j+1/2$, their
+norms are at most $C_{d,\tau}(j+3)\ee^{2dj}$.
+The local trace inequality at $d$ is unchanged. A bin with $m$
+Taylor terms consequently has trace error at most
+\begin{equation}
+ C_{d,\tau}(j+3)^4\ee^{-s\delta_F}
+                     \ee^{-(s-4d)j}4^{-m}.              \label{eq:ctrlsmoothbin}
+\end{equation}
+The same allocation $m_j=M-j$ proves, for $s\ge4d+2$,
+\begin{equation}
+ \sum_{k>M(M+1)}\lambda_k(G_F)
+       \le C_{d,\tau}\ee^{-s\delta_F}4^{-M},             \label{eq:ctrlsmoothtail}
+\end{equation}
+where $G_F$ includes every input energy at least $\delta_F$.
+In particular it has the all-index stretched-exponential envelope
+needed after conditioning. Repeating the normalization and entropy
+argument gives
+\begin{equation}
+ S(\sigma_\tau)=O_{F,\tau}
+       (s^{-2}\log s+s^{5/2}\ee^{-s\delta_F})\to0,        \label{eq:ctrlsmoothentropy}
+\end{equation}
+and all fixed positive R\'enyi limits.
+The positive source limit follows from strong resolvent convergence
+and the absence of eigenvalues of the full-line operator, whose
+left half-line is free. Its coefficient is precisely
+$\norm{(3/2)h_\tau(B_\infty)Ff_1}^2/m_1^2=C_F(\tau)$.
+These constants concern a fixed profile in penetration-length
+units; the theorem does not keep a positive physical transition
+width fixed as $r\to0$.
+
+\section{One controlled wall versus two in the same Gibbs well}
+\label{app:switch}
+
+Use the connected initial well in Eq.~\eqref{eq:twowell}.
+Restriction to the right half, multiplied by $\sqrt2$, is unitary
+from each initial parity subspace. In right-interface coordinates
+the half interval is $(-a,\ell)$, $a=1/(2r)$,
+$\ell=1/r$. Even parity gives a Neumann condition at $-a$;
+odd parity gives a Dirichlet condition. This decomposition is an
+exact representation of the initial Sturm problem and introduces
+no physical midpoint wall.
+
+For $E=k^2<1$, the quantization conditions are
+\begin{equation}
+ ka+\arctan[k/d(E)]=
+ \begin{cases}(j-1/2)\pi,&\text{even},\\j\pi,&\text{odd},\end{cases}
+                                                        \label{eq:switchphase}
+\end{equation}
+with the right function in Eq.~\eqref{eq:ctrlf}. Integration
+gives the normalized half-state boundary amplitude
+\begin{equation}
+ b_E^2=\frac{2E}
+ {a+[a-(a+\ell)E]\operatorname{csch}^2(\kappa\ell)
+                      +\coth(\kappa\ell)/\kappa}.       \label{eq:switchamp}
+\end{equation}
+The denominator lies between $a$ and $a+3$ for $E\le1/2$ and
+large $a$. Each parity count differs from $ak/\pi$ by at most
+one. The proof of Eq.~\eqref{eq:ctrlmom} therefore gives
+\begin{equation}
+ M_{j,+}\sim M_{j,-}\sim
+       \frac{\Gamma(j+3/2)}\pi s^{-j-3/2}.               \label{eq:switchmom}
+\end{equation}
+Equal leading weights follow from this computation, not reflection
+symmetry alone.
+
+When only the right wall is controlled, the actual full-state
+boundary amplitude is $\beta_E=b_E/\sqrt2$. Its union moment is
+$(M_{j,+}+M_{j,-})/2$, with the single-wall leading coefficient.
+The final operator is on $(-2\ell,\ell)$ with height one on
+$(-2\ell,-\ell)$ and height four on $(0,\ell)$. It does not
+preserve initial parity. For both initial parity sectors,
+\begin{equation}
+ K_Ru_E=\beta_E\ee^{-i\tau E}\frac32
+                 h_\tau(B_R-E)f_{E,\ell}.               \label{eq:switchcolumn}
+\end{equation}
+Thus there is one common source curve. Both initial parity
+populations approach the same output vector. The uncontrolled
+left barrier and the endpoints recede in the source limit, giving
+the same full-line $v_\tau$ as Eq.~\eqref{eq:ctrlsource}.
+Only the controlled interface contributes to
+Eq.~\eqref{eq:ctrlboundary}; the uncontrolled left wall commutes
+with $Q_R$. The preceding local trace, analytic-curve, and entropy
+bounds apply unchanged. Hence the accepted trace is
+$C(\tau)m_s[1+o(1)]$ and the output entropy tends to zero.
+
+When both walls are controlled, both final parity blocks are
+exactly invariant and orthogonal. Their half-interval operators
+are the same sharp $A,B$ pair; only the remote midpoint condition
+differs. At a negative spectral parameter the reflected Green
+terms from a remote Neumann or Dirichlet endpoint decay
+exponentially, giving the same strong source limit for both.
+Local resolvent estimates and their integrations by parts hold
+with either remote condition. Each block therefore has accepted
+trace $C(\tau)m_s[1+o(1)]$ and normalized entropy tending to zero.
+Their weights approach $1/2$. If the weight is $z$, the exact
+identity
+\begin{equation}
+ S(z\sigma_+\oplus(1-z)\sigma_-)
+ =h_2(z)+zS(\sigma_+)+(1-z)S(\sigma_-)                   \label{eq:switchentropy}
+\end{equation}
+where $h_2(z)=-z\log z-(1-z)\log(1-z)$, proves the limit
+$\log2$. The block trace-power identity proves
+the same limit for each fixed positive R\'enyi order.
+
+For the unchanged input, three-interval bracketing gives
+\begin{equation}
+ Z=\frac{1+2\ee^{-s}}{2\sqrt\pi r\sqrt s}+O(1).        \label{eq:switchpartition}
+\end{equation}
+It proves the two stated probabilities and their ratio two,
+as well as input purity $\sim\sqrt{2\pi}r\sqrt s$.
+There is no finite-parameter identity $K_2=K_L+K_R$, and the
+calculation does not assert that arbitrary interface counts
+equal accepted rank.
+
+\section{Survival of repeated noncommuting heralds}
+\label{app:repeat}
+
+Here the resonance is the fundamental one, $\tau=2\pi/3$.
+We prove injectivity for the actual full-line difference of
+propagators and then transfer the complete thermal estimates.
+This is needed because the difference of two unitaries can be
+nonnormal and can even have a zero square; a scalar spectral
+filter argument does not apply to $K^m$.
+
+\subsection{The sharp step}
+
+Suppose $Kg=0$, $\norm g=1$. Set $c=3/2$,
+$W(u)=\ee^{iuA}\ee^{-iuB}$,
+$Z(u)=\ee^{icu}W(u)$, and
+$S(u)=\ee^{iuA}(2Q-I)\ee^{-iuA}$.
+Bounded perturbation makes $Z(u)g$ strongly continuously
+differentiable, with
+\begin{equation}
+ Z'(u)=-icS(u)Z(u),\qquad S(u)^*=S(u),\quad S(u)^2=I.
+                                                        \label{eq:repeatcurve}
+\end{equation}
+On the real unit sphere of the complex Hilbert space, the curve
+$\psi(u)=Z(u)g$ has speed $c$, joins $g$ to $-g$, and has length
+$c\tau=\pi$. It is a shortest great semicircle. Explicitly, the
+two spherical distances from $\psi(u)$ to the antipodes sum to
+$\pi$ and are at most $cu$ and $\pi-cu$; both bounds are equalities.
+Writing $\psi(u)=\cos(cu)g+\sin(cu)n(u)$ with $n(u)$ a real
+orthogonal unit vector gives
+$\norm{\psi'}^2=c^2+\sin^2(cu)\norm{n'}^2$, so $n$ is
+constant and fixed by the initial derivative. Consequently
+\begin{equation}
+ W(u)g=(I-Q)g+\ee^{-3iu}Qg.                              \label{eq:repeatgeodesic}
+\end{equation}
+The real-sphere argument retains the Ramsey relative phase;
+projective Hilbert space would identify the two endpoints and
+would not give this conclusion.
+
+Inserting Eq.~\eqref{eq:repeatgeodesic} into the interaction
+equation gives
+\begin{equation}
+ Q\ee^{-iuA}(I-Q)g
+       =\ee^{-3iu}(I-Q)\ee^{-iuA}Qg.                    \label{eq:repeatsupport}
+\end{equation}
+The two sides have disjoint supports and therefore both vanish
+for $0<u<\tau$. Each initial half-line piece would stay confined
+to its original half-line.
+
+Persistent confinement is excluded by semibounded time analyticity,
+the principle underlying the positive-observable alternative in
+Ref.~\cite{Hegerfeldt1998}; we give its application directly here.
+For $f_-=(I-Q)g$ and any test vector $k$ supported in $x>0$,
+$F_k(z)=\ip{k}{\ee^{-izA}f_-}$ is bounded analytic for
+$\operatorname{Im}z<0$, continuous on the real boundary, and
+zero on an open interval. Schwarz reflection across a smaller
+interval with zero boundary values followed by the identity
+theorem makes it identically zero. The heat evolution and all
+resolvents $(A+\lambda)^{-1}f_-$ therefore vanish on $x>0$.
+Direct matching gives the cross-interface resolvent kernel
+\begin{equation}
+ \begin{gathered}
+ G_\lambda(x,y)=\frac{\ee^{-qx}\ee^{py}}{p+q},\quad\\
+ x>0>y,\quad p=\sqrt\lambda,\quad q=\sqrt{\lambda+1}.
+                                                        \label{eq:repeatresolvent}
+ \end{gathered}
+\end{equation}
+Thus $\int_{-\infty}^0\ee^{py}f_-(y)\dd y=0$ for every
+$p>0$. Analytic continuation to $p=a+i\xi$ and Fourier
+uniqueness for the exponentially damped half-line function
+prove $f_-=0$. The reversed cross kernel gives the same conclusion
+for $f_+=Qg$, initially for $q>1$ and then by analytic continuation.
+This contradiction proves $\ker K=\{0\}$.
+
+\subsection{Smooth plateau and strictly interior profiles}
+
+For a smooth nondecreasing plateau profile replace $2Q-I$ by
+$2F-I$ in Eq.~\eqref{eq:repeatcurve}. Its norm is at most one,
+so the curve from $g$ to $-g$ has length at most $\pi$. Equality
+is necessary, and every speed equals $c$. It follows that
+\begin{equation}
+ 4\ip{\ee^{-iuB}g}{F(1-F)\ee^{-iuB}g}=0,
+                  \qquad0\le u\le\tau.                 \label{eq:repeatsmoothzero}
+\end{equation}
+Let $a=\sup\{x:F(x)=0\}$ and $b=\inf\{x:F(x)=1\}$.
+Continuity and monotonicity give $a<b$ and $0<F<1$ on $(a,b)$.
+Equation~\eqref{eq:repeatsmoothzero} makes the evolution vanish
+there, including at zero time. The preceding time analyticity
+argument implies that $(B+\lambda)^{-1}g$ vanishes there for
+every $\lambda>0$.
+
+Let $\phi_-$ and $\phi_+$ solve $(B+\lambda)\phi=0$ and agree
+with $\ee^{\sqrt\lambda(x-a)}$ for $x\le a$ and
+$\ee^{-\sqrt{\lambda+4}(x-b)}$ for $x\ge b$, respectively.
+They are linearly independent: proportionality would give a
+negative-energy $L^2$ eigenfunction, contradicting $B\ge0$.
+Their Wronskian is nonzero, and the Green formula, verified by
+its unit derivative jump, gives on $(a,b)$
+\begin{equation}
+ [(B+\lambda)^{-1}g](x)=c_-(\lambda)\phi_+(x)
+                                      +c_+(\lambda)\phi_-(x).
+                                                        \label{eq:repeatsmoothgreen}
+\end{equation}
+Up to the same nonzero Wronskian factor the coefficients are
+\begin{align}
+ c_-(\lambda)&=\int_{-\infty}^a
+                \ee^{\sqrt\lambda(y-a)}g(y)\dd y,\nonumber\\
+ c_+(\lambda)&=\int_b^\infty
+                \ee^{-\sqrt{\lambda+4}(y-b)}g(y)\dd y.
+                                                        \label{eq:repeatlaplace}
+\end{align}
+There is no source integral inside $(a,b)$ because $g$ vanishes
+there. Linear independence forces both coefficients to vanish;
+the two Laplace uniqueness arguments prove $g=0$.
+This proves injectivity for the fixed smooth plateau family.
+
+For completeness, a multiplier satisfying $0<F<1$ almost
+everywhere, such as the finite analytic erf profile, gives an
+even shorter injectivity argument. The centered curve has speed
+at most $c$, but its initial speed is strictly less than $c$ for
+every nonzero $g$, since $\int F(1-F)|g|^2>0$.
+Continuity makes its total length strictly less than $\pi$,
+contradicting the antipodal endpoints. This observation supplies
+no quantitative finite-device later-round yield.
+
+\subsection{Complete thermal normalization after a fixed number of rounds}
+
+Let $V_\tau=(3/2)h_\tau(B_\infty)Ff_1$ and
+$w_m=K_\infty^{m-1}V_\tau$. The source is nonzero and injectivity
+gives $w_m\ne0$ for every fixed $m$. Strong convergence of the
+finite-box propagators, their uniform contraction bounds, and
+the source convergence give
+\begin{equation}
+ K_{\tau,\ell}^{m-1}V_{0,\ell}(\tau)\longrightarrow w_m.
+                                                        \label{eq:repeatlimit}
+\end{equation}
+The actual low columns after $m$ rounds are
+\begin{equation}
+ K_{\tau,\ell}^m u_E
+ =b_E\ee^{-i\tau E}K_{\tau,\ell}^{m-1}V_{E,\ell}(\tau).
+                                                        \label{eq:repeatcolumn}
+\end{equation}
+The scalar phase is $\ee^{-i\tau E}$, not a replacement of
+$K^m$ by a commuting polynomial. Multiplication by a contraction
+preserves the low Taylor approximation bounds and cannot increase
+the singular values of the high-sector column operator. The
+complete entropy bounds in Appendix~\ref{app:control} therefore
+apply after normalization by the positive source coefficient,
+giving
+\begin{align}
+ p_m&\sim\frac{\norm{w_m}^2}{m_1^2}\frac r s,
+ \qquad\Tr\sigma_m^2\to1,\nonumber\\
+ S(\sigma_m)&=O_{m,F}(s^{-2}\log s+s^{5/2}\ee^{-s\delta_F})\to0.
+                                                        \label{eq:repeatentropy}
+\end{align}
+For the sharp wall one can take $\delta_F=1/2$ and $m_1=1$.
+All fixed positive R\'enyi entropies also vanish. In particular
+$p_{m+1}/p_m\to\norm{w_{m+1}}^2/\norm{w_m}^2>0$.
+There is no lower bound uniform in $m$, no limit with $m$ growing,
+and no assertion at every higher resonance.
+
+\subsection{Two independent imperfect readouts}
+
+With $\nu_j\in[0,1]$ and $\epsilon_j=1-\nu_j$, composition of the two maps in
+Eq.~\eqref{eq:visibility} is exactly
+\begin{align}
+ \mathcal J_{\nu_2}(\mathcal J_{\nu_1}(\rho))
+ ={}&\nu_1\nu_2K^2\rho(K^*)^2
+ +\epsilon_1\nu_2K\mathcal D(\rho)K^*\nonumber\\
+ &+\nu_1\epsilon_2\mathcal D(K\rho K^*)
+ +\epsilon_1\epsilon_2\mathcal D^2(\rho).               \label{eq:repeatnoisemap}
+\end{align}
+All four terms are positive. If $p_1,p_2$ are the ideal probabilities,
+the third branch before its scalar coefficient has trace $p_1/2$
+and the fourth has trace $1/4$. For the second branch use
+$U_B=U_A+2K$ and $U_Au_E=\ee^{-i\tau E}u_E$, giving
+$KU_Bu_E=\ee^{-i\tau E}Ku_E+2K^2u_E$.
+The $U_A$ term alone gives its lower trace $p_1/4$; the inequality
+$\norm{a+2b}^2\le2\norm a^2+8\norm b^2$ gives the upper trace
+$(3p_1+8p_2)/4$. Because both ideal probabilities are of order
+$r/s$, Eq.~\eqref{eq:twonoise} makes the total false weight
+negligible relative to $p_2$, proving source retention and ideal
+leading yield. One effective visibility multiplying $K^2$ would
+be a different channel.
+
+The normalized singly false branches have uniformly bounded
+entropy. For $K\mathcal D(\rho)K^*$ their low columns are
+combinations of $Ku_E$ and $K^2u_E$, so two limiting source
+vectors suffice, and their complete tails are bounded by sums
+of the contracted analytic tails. Its trace is at least $p_1/4$,
+so normalization is controlled. The other singly false branch
+is a mixture of two unitary images of the one-round state.
+Their weights relative to the useful branch are
+$O(\epsilon_1+\epsilon_2)$, and their weighted entropies vanish.
+
+The normalized all-false state $4\mathcal D^2(\rho)$ is a
+mixture of four unitary images of $\rho$. Concavity and the
+finite-label mixture bound give
+\begin{equation}
+ S(\rho)\le S(4\mathcal D^2(\rho))\le S(\rho)+\log4.
+                                                        \label{eq:repeatfalseentropy}
+\end{equation}
+The partition and its first energy moment imply
+$S(\rho)=\log N+O(1)$, $N=1/(r\sqrt s)$.
+Consequently $\epsilon_1\epsilon_2\log N=o(r/s)$,
+together with $\epsilon_1+\epsilon_2\to0$, pays the all-false
+entropy and the finite mixture-label entropy, proving sufficiency.
+Under Eq.~\eqref{eq:twonoise}, the all-false weight is
+asymptotic to $\epsilon_1\epsilon_2/(4p_2)$; entropy concavity
+and Eq.~\eqref{eq:repeatfalseentropy} prove necessity of this
+strengthened product condition. These are results for the stated
+independent visibility channels, not correlated dephasing or
+unrecorded timing laws.
+
+\section{A validated smooth-wall and noise calculation}
+\label{app:certificate}
+
+This calculation concerns the exact error-function wall in
+Eq.~\eqref{eq:erf}. It does not replace that wall by a finite-dimensional
+Hamiltonian. We describe the enclosures sufficiently to distinguish
+analytic error control from numerical convergence.
+
+\subsection{Resolving the transition with a controlled amplitude tail}
+
+Put $w=1/40$, $e=\operatorname{erf}(5)$, $a_0=1-5w=7/8$. Define
+a continuous plateau comparator by
+\begin{equation}
+ F_0(y)=\begin{cases}
+ 0,&y\le a_0,\\
+ [\operatorname{erf}((y-1)/w)+e]/(2e),&a_0<y<2-a_0,\\
+ 1,&y\ge2-a_0.
+ \end{cases}
+\end{equation}
+Monotonicity of the error function and direct subtraction inside
+the middle interval give
+\begin{equation}
+ \norm{F_r-F_0}_\infty\le\varepsilon=(1-e)/2
+                                      <7.688\times10^{-13}.
+                                                               \label{eq:erfamp}
+\end{equation}
+This is an amplitude error. The mathematical validation collar
+has length $1/4$, whereas the physical 10--90 width is
+$2w\operatorname{erf}^{-1}(0.8)=0.9061938024\ldots r$.
+
+For the spectral solve use $H_a=-\partial_y^2+aF_0$ with
+$a=400,1600$, inverse temperature $8/400$, and time
+$2\pi/1200$. Divide energies by 400 to return to
+Eq.~\eqref{eq:erf}. The middle interval is divided into 50 cells
+of length $h=1/200$. In a cell let $x\in[0,1]$ and
+$z=-5+j/5$, so the error-function argument is $z+x/5$.
+Taylor coefficients of $g(x)=\ee^{-(z+x/5)^2}$ follow from
+$g'=-2(z+x/5)g/5$; integrating them supplies the coefficients
+of $F_0$. The initial coefficient is enclosed with Arb's error
+function. The solution coefficients obey the exact recurrence
+\begin{equation}
+ \begin{gathered}
+ (n+1)(n+2)u_{n+2}
+      \\=h^2\Bigl(a\sum_{j=0}^nF_j u_{n-j}
+      \\-E u_n\Bigr).
+                                                               \label{eq:erfrecurrence}
+ \end{gathered}
+\end{equation}
+The value and derivative polynomials are retained through degree
+48, with $u_{49}$ computed for the latter.
+
+For an explicit common remainder, take the complex radius $R=4$
+in the local variable. On that disk the error-function argument has
+imaginary part at most $b=4/5$. Vertical integration from its real
+part gives
+\begin{equation}
+ \begin{gathered}
+ |\operatorname{erf}\zeta|\le1+2b\ee^{b^2}/\sqrt\pi,
+ \qquad\\ |F_0|\le M_F^*=\frac{e+1+2b\ee^{b^2}/\sqrt\pi}{2e}.
+ \end{gathered}
+\end{equation}
+For $Y=(u,u_x)$, the analytic first-order system has matrix
+infinity norm at most $M=\max\{1,h^2(|E|+aM_F^*)\}$.
+Gronwall along a radius and Cauchy's coefficient estimate imply
+the uniform error bound for both retained components
+\begin{equation}
+ \eta\le\frac{\ee^{RM}\norm{Y(0)}_\infty}{(R-1)R^{48}}
+                         \qquad(0\le x\le1).                 \label{eq:erfremainder}
+\end{equation}
+The physical derivative error is $\eta/h$.
+
+To prevent interval wrapping, the propagated vector is recentered
+at each cell endpoint, carrying a scalar Euclidean error in
+$(u,u_y/k_*)$, with a fixed positive integer $k_*$ for that
+eigenvalue bracket. The symmetric part of the real generator
+has largest eigenvalue at most
+\begin{equation}
+             \frac{|k_*^2-E|+a}{2k_*}.
+\end{equation}
+An incoming error is therefore multiplied by at most the
+exponential of $h$ times this bound. Local endpoint ball radii
+and Eq.~\eqref{eq:erfremainder} are added outwardly. The same
+growth bound controls every interior point used in integrals.
+Energy uncertainty is retained in each recurrence and exponent;
+recentering discards no error term.
+
+\subsection{Root labels, overlaps, and the full accepted Gram matrix}
+
+The left plateau solution is $\sin(\sqrt E\,y)$ and the right
+solution is boundary-adapted sine or hyperbolic sine. At the right
+collar endpoint the matching determinant is
+\begin{equation}
+ \begin{cases}
+ u_b\cos(qa_0)+v_b\sin(qa_0)/q,&E>a,\quad q=\sqrt{E-a},\\
+ u_b+v_b\tanh(\kappa a_0)/\kappa,&E<a,\quad\kappa=\sqrt{a-E}.
+ \end{cases}                                                  \label{eq:erfroot}
+\end{equation}
+The threshold is its continuous limit. Floating integration only
+proposes rational root brackets. The analytic ODE recomputes their
+endpoint signs. The free plateau nodes are counted exactly; on
+each collar cell, $u''+(E-aF_0)u=0$ and $E-aF_0\le E$ imply
+that two zeros are separated by at least $\pi/\sqrt E$.
+The checker verifies that the cell is shorter than this distance
+and that its endpoint values are nonzero. Opposite signs then
+mean exactly one zero, equal signs none. Consecutive Sturm indices,
+ordered disjoint brackets, and the first omitted neighbor certify
+the spectral prefix without missing an intermediate level.
+
+Cell overlap integrals multiply the enclosed polynomials. If their
+supremum bounds are $U,V$ and errors $\eta,\zeta$, the missing
+integral is at most $h(\eta V+\zeta U+\eta\zeta)$. Exact signed
+sine and hyperbolic-sine integrals supply both plateaus. This
+constructs normalization and signed overlaps for 30 initial and
+126 final retained modes. The first omitted final eigenvalue
+and the overlap identity bound every omitted final overlap mass
+$R_n$ by Eq.~\eqref{eq:finalcounttail}, replacing $Q$ by $F_0$.
+In the $H_a$ energy units the numerator is
+$1200^2\norm{F_0u_n}^2$; in dimensionless energies, after division
+by 400, it is $9\norm{F_0u_n}^2$. The numerator norm is bounded
+by the full collar and right-plateau masses.
+Equation~\eqref{eq:initialcounttail} bounds
+every omitted initial Gibbs weight.
+
+There is a useful factor of two in the Gram tail. For real
+eigenfunctions let
+$V_{nm}(t)=\sum_j O_{jn}O_{jm}\ee^{-it\lambda_j}$ in dimensionless
+energies. The exact initial-basis Gram matrix is
+\begin{equation}
+ \begin{gathered}
+ G_{nm}=\ip{K_tu_n}{K_tu_m}
+ \\=\frac{\delta_{nm}}2-\frac14\left[
+       \ee^{itE_n}V_{nm}+\overline{\ee^{itE_m}V_{nm}}\right].
+                                                               \label{eq:erfgram}
+ \end{gathered}
+\end{equation}
+The missing part of $V_{nm}$ is at most $\sqrt{R_nR_m}$,
+so the Gram error is at most $\sqrt{R_nR_m}/2$.
+Let $a_n=\ee^{-sE_n}$ and $T=\sum_na_nG_{nn}$. Positivity gives
+\begin{equation}
+ p=T/Z_1,\qquad
+ \Tr\sigma^2=\frac{\sum_{n,m}a_na_m|G_{nm}|^2}{T^2}.          \label{eq:erfpurity}
+\end{equation}
+For a lower purity bound the retained $(n,m)$ entry contributes
+$[\max\{0,\underline{|G_{nm}^{\rm prefix}|}
+-\sqrt{R_nR_m}/2\}]^2$, where the underline denotes its interval
+lower bound. All missing squared entries are nonnegative.
+Upper-bound $T$ by the retained diagonal
+upper sum plus the full omitted initial trace, since $G_{nn}\le1$.
+Lower and upper partition bounds give the acceptance interval.
+Input purity is $Z_1(2s)/Z_1(s)^2$, with both heat tails paid.
+
+\subsection{Passing to the actual analytic wall}
+
+Let $S=\ee^{-sA/2}/\sqrt{Z_1}$ and
+$S_0=\ee^{-sA_0/2}/\sqrt{Z_{1,0}}$ be Hilbert--Schmidt
+purifications. Min--max and Eq.~\eqref{eq:erfamp} give
+$\ee^{-s\varepsilon}Z_{1,0}\le Z_1\le
+\ee^{s\varepsilon}Z_{1,0}$. Duhamel at heat time $t=s/2$,
+with Schatten H\"older, bounds the integrand by
+\begin{equation}
+ \begin{gathered}
+ \norm{\ee^{-(t-u)A}(F_r-F_0)\ee^{-uA_0}}_2
+ \\
+ \le\varepsilon Z_1^{(t-u)/(2t)}Z_{1,0}^{u/(2t)}
+ \\
+ \le\varepsilon\ee^{(t-u)\varepsilon}\sqrt{Z_{1,0}}.
+ \end{gathered}
+\end{equation}
+After integration and normalization of the two vectors this gives
+\begin{equation}
+       \norm{S-S_0}_2\le d_{\rm prep}:=s\varepsilon\ee^{s\varepsilon/2}.
+                                                               \label{eq:erfprep}
+\end{equation}
+Unitary Duhamel also gives
+$\norm{K_\tau(F_r)-K_\tau(F_0)}\le(5/2)|\tau|\varepsilon$.
+Thus the unnormalized output purifications differ by at most
+$h=d_{\rm prep}+(5/2)|\tau|\varepsilon$.
+
+More generally, if a reference output purification has squared norm
+in $[p_-,p_+]$ and its state has purity at least $P_-$, a vector
+error at most $h<\sqrt{p_-}$ yields
+\begin{equation}
+ (\sqrt{p_-}-h)^2\le p\le(\sqrt{p_+}+h)^2,
+ \qquad \Tr\sigma^2\ge P_- -\frac{2h}{\sqrt{p_-}}.            \label{eq:purificationbound}
+\end{equation}
+The probability bounds are the norm triangle inequalities. For the
+state, project the reference vector onto the line through the new
+one; the sine of their angle is at most $h/\sqrt{p_-}$.
+The pure-state trace-distance identity and partial-trace
+contractivity give the displayed purity loss, because purity is
+1-Lipschitz in trace norm on density operators:
+\begin{equation}
+ |\Tr(\sigma^2-\rho^2)|
+ =|\Tr[(\sigma-\rho)(\sigma+\rho-\id)]|
+ \le\norm{\sigma-\rho}_1.
+\end{equation}
+The last inequality uses $-\id\le\sigma+\rho-\id\le\id$.
+Input purity changes by at most $2d_{\rm prep}$.
+These bounds give the actual analytic-wall nominal acceptance
+$0.0025635744408<p_0<0.0025635744431$, nominal purity
+$P_0>0.9664657000$, and input purity below $0.386060$.
+
+\subsection{Unrecorded time distributions and recorded outcomes}
+
+Since $A$ commutes with its Gibbs square root,
+$B=A+3F_r$ and unitarity give Eq.~\eqref{eq:jitter} by
+differentiating in Hilbert--Schmidt norm. In particular
+$\norm{(K_t-K_\tau)S}_2\le L|t-\tau|$.
+For any independent duration law $\mu$ supported on
+$[\tau-\Delta,\tau+\Delta]$, regard $K_tS$ as a vector in
+$L^2(\mu;\mathfrak S_2)$. Its distance from the constant
+reference $K_\tau S$ is at most $L\Delta$. Partial trace over
+this duration register gives exactly the unrecorded mixture
+$\overline R=\int K_t\rho K_t^*\mu(\dd t)$.
+Equation~\eqref{eq:purificationbound} therefore applies to this
+mixture, not just separately to states in duration-dependent frames.
+
+Both moments in $L$ are bounded for the actual $F_r$. For retained
+comparator energies $E_n$ in dimensionless units, the actual
+unnormalized second-energy contribution is bounded by
+$(E_n+\varepsilon)^2\ee^{-s(E_n-\varepsilon)}$.
+For omitted modes, put
+$c=sr^2\pi^2/4$, $x_0=r^2\pi^2(n_0+1)^2/4$ and
+$q_0=\ee^{-c(2n_0+3)}$. The checker verifies $x_0>2/s$.
+Monotonicity of $x^2\ee^{-sx}$ above $x_0$ and
+$(n_0+1+j)^4\le(n_0+1)^4(j+1)^4$ give the full tail
+\begin{equation}
+ x_0^2\ee^{-c(n_0+1)^2}
+              \frac{1+11q_0+11q_0^2+q_0^3}{(1-q_0)^5}.
+                                                               \label{eq:momenttail}
+\end{equation}
+Divide by the actual partition lower bound
+$\ee^{-s\varepsilon}Z_{1,0,-}$. For $\Tr\rho_0F_0^2$, bound
+$F_0^2$ by its right endpoint in each validation cell and multiply
+by the certified cell norm. Add the entire right-plateau norm,
+where $F_0=1$, and the complete omitted Gibbs tail.
+Then
+\begin{equation}
+ \Tr\rho F_r^2\le\Tr\rho_0F_0^2+2d_{\rm prep}+2\varepsilon.
+\end{equation}
+The resulting bounds are
+$\Tr\rho A^2<0.015989357$, $\Tr\rho F_r^2<0.003950444$,
+and $L<0.220727856$.
+
+To include visibility and detector assignments, set
+\begin{equation}
+ \overline D=\int\frac{U_A\rho U_A^*+U_B\rho U_B^*}{2}\mu(\dd t),
+ \qquad\Tr\overline D=1.
+\end{equation}
+Both branches use the same duration law. With false-positive
+probability $e$ and false-negative probability $d$, the recorded
+dark operator is exactly
+\begin{equation}
+ \begin{gathered}
+ R_{\rm obs}=a\overline R+b\overline D,\qquad\\
+ a=(1-d-e)\nu,\quad b=(1-d-e)(1-\nu)/2+e.                     \label{eq:recordedmap}
+ \end{gathered}
+\end{equation}
+This follows from $(1-d)\mathcal J_\nu+e\mathcal J_{\rm bright}$
+and $\mathcal J_\nu+\mathcal J_{\rm bright}=\overline D$.
+For $d+e\le1$ both coefficients are nonnegative. Positivity
+of the Hilbert--Schmidt cross term gives
+\begin{equation}
+ \Tr\sigma_{\rm obs}^2\ge
+ \left(\frac{a\overline p}{a\overline p+b}\right)^2
+                  \Tr\overline\sigma^2,
+ \qquad p_{\rm obs}=a\overline p+b.                          \label{eq:recordedpurity}
+\end{equation}
+Using $\Delta=0.001$, $\nu=0.9999$, $e=10^{-5}$, $d=0.01$
+and outward endpoints in these monotone formulas gives
+Eq.~\eqref{eq:certificate}. All probabilities are conditional
+on the specified physical channels; generic correlated preparation
+or detection errors are different models.
+
+The accompanying scripts enclose every root, ODE remainder, overlap,
+Gram entry, Gibbs tail, and scalar propagation at 256-bit ball
+precision. Saved source hashes identify the scripts actually
+replayed. Their finite prefixes are computational devices inside
+the inequalities above and never project the physical output.
+
+\section{Finite spectral enclosures and statistical reconstruction}
+\label{app:counts}
+
+This appendix distinguishes deterministic continuum error from
+statistical counting error. Both are needed to use the source
+reconstruction in an actual finite experiment. Throughout this
+appendix the device is the sharp-wall Hamiltonian in
+Eq.~\eqref{eq:ham}; the noisy smooth example is separate.
+
+\subsection{Complete finite-device probabilities}
+
+For each initial eigenstate, completeness and $B-A=3Q$ give
+\begin{align}
+ \sum_j|O_{jn}|^2&=1,\nonumber\\
+ (\lambda_j-E_n)O_{jn}&=3\ip{\phi_j}{Qu_n},\label{eq:countoverlap}\\
+ \sum_j(\lambda_j-E_n)^2|O_{jn}|^2&=9\norm{Qu_n}^2,
+ \qquad\nonumber\\ O_{jn}&=\ip{\phi_j}{u_n}.\nonumber
+\end{align}
+Take a complete initial prefix of length $n_0$ and a complete final
+prefix of length $j_0$, including certified lower endpoints for the
+first omitted levels. If $\lambda_{j_0+1}\ge L_*>E_n$, the missing
+final overlap mass obeys
+\begin{equation}
+ \begin{gathered}
+ R_n:=\sum_{j>j_0}|O_{jn}|^2
+ \\
+ \le\min\left\{1-\sum_{j\le j_0}|O_{jn}|^2,
+                \frac{9\norm{Qu_n}^2}{(L_*-E_n)^2}\right\}.
+                                                               \label{eq:finalcounttail}
+ \end{gathered}
+\end{equation}
+The upper interval endpoint of each expression is used. For the full
+omitted initial sector, min--max comparison with the free Dirichlet
+interval gives
+\begin{equation}
+ T_{n_0}:=\sum_{n>n_0}\ee^{-sE_n}
+ \le\frac{\ee^{-b(n_0+1)^2}}
+           {1-\ee^{-b(2n_0+3)}},\qquad b=s r^2\pi^2/4.
+                                                               \label{eq:initialcounttail}
+\end{equation}
+Indeed the successive exponents beyond $n_0+1$ increase by at least
+$b(2n_0+3)$. This tail includes every omitted state above the barrier;
+retained states in that sector remain in the finite sum.
+
+Let $Z_-$ and $Z_+$ enclose
+$\sum_{n\le n_0}\ee^{-sE_n}+[0,T_{n_0}]$, and define the finite
+positive numerator
+\begin{equation}
+ P_{n_0j_0}(t)=\sum_{n\le n_0,j\le j_0}\ee^{-sE_n}|O_{jn}|^2
+                         \sin^2[t(\lambda_j-E_n)/2].
+\end{equation}
+Equations~\eqref{eq:ramseytpm} and \eqref{eq:finalcounttail} then give
+\begin{equation}
+ \frac{P_{n_0j_0}(t)}{Z_+}\le p_{r,s}(t)
+ \le\frac{P_{n_0j_0}(t)+\sum_{n\le n_0}\ee^{-sE_n}R_n+T_{n_0}}
+              {Z_-}.                                         \label{eq:countenclosure}
+\end{equation}
+The finite sums themselves are evaluated with outward interval
+arithmetic, so their lower and upper endpoints are used on the
+corresponding sides. Neither tail uses oscillatory cancellation.
+
+For clarity, all eigenvalues can be enclosed without a spatial
+discretization. For a wall of height $h$ on the right half of $(0,2)$,
+write $k=\sqrt E/r$, $q=\sqrt{E-h}/r$. Matching $\sin(ky)/k$ with
+the right boundary-adapted function $\sin[q(2-y)]/q$ gives the
+entirely continued determinant
+\begin{equation}
+       \cos k\,\frac{\sin q}{q}+\frac{\sin k}{k}\cos q=0.      \label{eq:countdet}
+\end{equation}
+Imaginary $q$ gives the hyperbolic formula; both sine quotients are
+continued with value one at zero. Rational sign brackets, disjoint in increasing order, and
+certified Sturm node counts prove that the enclosed roots have
+consecutive indices starting at one. Analytic sine and hyperbolic-sine
+integrals give their normalization and signed cross overlaps.
+Floating-point root searches only propose brackets; signs and
+indices are rechecked with ball arithmetic \cite{JohanssonArb}.
+
+The data in Sec.~\ref{sec:counts} use $n_0=64$ and $j_0=1260$ at
+$(r,s)=(1/200,128)$. The weighted, scaled Gibbs-tail allowance is
+below $5.612\times10^{-11}$; the final spectral-tail allowance is
+below $1.297776\times10^{-5}$. These errors are already included
+in Eq.~\eqref{eq:countenclosure}, not appended a second time.
+
+\subsection{The exact source quadrature and its tails}
+
+For $c=1$, use $T=32$, the 256 nodes $t_i=(2i+1)/16$,
+$i=0,\ldots,255$, and the positive weights in Eq.~\eqref{eq:weights}.
+Their exact sum is
+\begin{equation}
+ \begin{gathered}
+ W=\frac4\pi\left[\operatorname{Si}(32)
+                       -\frac{1-\cos32}{32}\right],
+ \qquad\\ W=1.95959365427766\ldots .                            \label{eq:weighttotal}
+ \end{gathered}
+\end{equation}
+The weight is fixed by the reconstruction identity, not fitted to
+the value of $\Phi(1)$.
+
+For the low-energy part of $C(t)$, substitute $E=4\sin^2\theta$ in
+Eq.~\eqref{eq:sharpdensity}. Its integrand on $[0,\pi/2]$ becomes
+\begin{equation}
+ \frac{9t^2}{\pi}
+ \frac{\sin^2\theta\cos\theta}{(1+2\cos\theta)^2}
+                 \sinc^2(2t\sin^2\theta),                   \label{eq:sourcequadlow}
+\end{equation}
+where $\sinc z=\sin z/z$ is continued at zero. Above four, set
+$E=4+q^2$, $k=\sqrt{4+q^2}$. The measure density in $q$ is
+\begin{equation}
+ h(q)=\frac{18q(1+kq)}
+          {\pi(q^2+4)^2(k+q)(q^2+1)^2}.                       \label{eq:sourcequadhigh}
+\end{equation}
+Integrate the actual sine-square response over $0\le q\le4$.
+The complete omitted mass is enclosed by the nonsingular finite
+integral, obtained from $q=1/u$,
+\begin{equation}
+ \begin{gathered}
+ \nu((20,\infty))=
+ \\
+ \int_0^{1/4}\frac{18u^4(u^2+\sqrt{1+4u^2})}
+ {\pi(1+4u^2)^2(1+\sqrt{1+4u^2})(1+u^2)^2}\,\dd u.
+                                                               \label{eq:sourcetail}
+ \end{gathered}
+\end{equation}
+It lies within $0.0004026117\pm4.36\times10^{-11}$.
+For every time node its missing sine-square contribution belongs to
+$[0,\nu((20,\infty))]$.
+
+For $\Phi(1)$ the low-angle integral is split at $\theta=\pi/6$.
+Before and after this point the integrands are respectively
+\begin{equation}
+ \frac{9\cos\theta}{\pi(1+2\cos\theta)^2},\qquad
+ \frac{9\cos\theta}{4\pi\sin^2\theta(1+2\cos\theta)^2}.
+\end{equation}
+The complete mass above four from Eqs.~\eqref{eq:sourcequadhigh}
+and \eqref{eq:sourcetail} is then added. Analytic ball quadrature
+\cite{JohanssonIntegration} encloses all finite integrals, producing
+Eq.~\eqref{eq:phinumeric} without a missing high-energy tail.
+
+Writing $S_C=\sum_iw_iC(t_i)$, the certificate keeps separate
+enclosures for $S_C-\Phi(1)$, $S-S_C$, and
+$\sum_iw_i|\lambda p(t_i)-C(t_i)|$. At the stated device,
+\begin{align}
+ |S-\Phi(1)|&<0.000479010749,\nonumber\\
+ |S_C-\Phi(1)|&<0.047699256289,\label{eq:systematiccounts}\\
+ \sum_iw_i|\lambda p(t_i)-C(t_i)|&<0.047233223348.\nonumber
+\end{align}
+The small direct error includes cancellation between two biases of
+opposite sign. The separate absolute budget is below
+$0.094932479636$. Because both the full source target and the finite
+source grid are enclosed, this already pays the source time-window
+and mesh errors; a further time-tail allowance would double-count
+them. These numerical statements concern this known sharp source,
+not a uniformly stable inverse of an unspecified potential.
+
+\subsection{Exact count intervals and the preparation budget}
+
+Assume independent trials with the same node probabilities $p(t_i)$.
+Let $X$ be the dark-event indicator after randomly choosing a node
+with probability $w_i/W$. Since this choice is made independently
+on every trial, $X$ is Bernoulli with
+$\bar p=\sum_i(w_i/W)p(t_i)$; a mixture of Bernoulli indicators is
+still Bernoulli. Therefore $k=\sum_{j=1}^nX_j$ is binomial.
+One exact equal-tailed interval \cite{ClopperPearson} is
+\begin{align}
+ L_n(k)&=\begin{cases}
+ 0,&k=0,\\
+ \operatorname{BetaQuantile}(\alpha/2;k,n-k+1),&k>0,
+ \end{cases}\nonumber\\
+ U_n(k)&=\begin{cases}
+ 1,&k=n,\\
+ \operatorname{BetaQuantile}(1-\alpha/2;k+1,n-k),&k<n.
+ \end{cases}                                                  \label{eq:cp}
+\end{align}
+Each endpoint inverts one binomial tail of probability $\alpha/2$;
+the union bound gives coverage at least $1-\alpha$. In particular
+$U_n(0)=1-(\alpha/2)^{1/n}$, so zero successes do not require a
+Gaussian approximation. Combining the interval with deterministic
+$d_\pm$ proves Eq.~\eqref{eq:confidence}.
+
+For the predeclared budget, a centered Bernoulli variable $Z$ has
+$\mathbb E|Z|^j\le\Var Z$ for every integer $j\ge2$. Expanding
+the exponential and using $j!\ge2\,3^{j-2}$ gives
+\begin{equation}
+ \log\mathbb E\ee^{uZ}\le
+       \frac{u^2\Var Z}{2(1-|u|/3)},\qquad |u|<3.
+\end{equation}
+Exponential Markov for the two signs and independence then yield
+\begin{equation}
+ \mathbb P(|\widehat S-S|\ge\epsilon)
+ \le2\exp\left[-\frac{n\epsilon^2}
+                   {2\lambda W(D+\epsilon/3)}\right],
+                                                               \label{eq:bernstein}
+\end{equation}
+because $\lambda W\bar p=S\le D$.
+This proves Eq.~\eqref{eq:shots}. A positive upper bound on the
+\emph{actual} scaled response is required: subtracting a known
+background mean would not remove its Bernoulli variance.
+
+The implementation uses exact dyadic weights
+$\widetilde w_i=2^{-80}\lfloor2^{80}w_i\rfloor$, with each integer
+numerator certified uniquely. If $p_i\le U_i/\lambda$ and
+$|w_i-\widetilde w_i|\le e_i$, the added bias is at most
+\begin{equation}
+             B_w=\sum_i e_iU_i.                              \label{eq:roundweight}
+\end{equation}
+Run the interval and budget formulas with $\widetilde W$ and the
+exact dyadic sampling law, widening the bias endpoints by $B_w$.
+Here $B_w<5.35\times10^{-23}$. A sampling-law implementation with
+total-variation error $\zeta$ would require the further allowance
+$\lambda\widetilde W\zeta$; the stated budgets specify the exact
+discrete law.
+
+For $\alpha=0.05$, use $\epsilon=0.05$ with the first line of
+Eq.~\eqref{eq:systematiccounts}, or $\epsilon=0.005$ with its two
+separate absolute errors. Outward rounding of Eq.~\eqref{eq:shots}
+gives the counts displayed in Sec.~\ref{sec:counts}, and respective
+total error bounds $0.050479011$ and $0.099932480$.
+No measured count is fabricated by this design calculation.
+
+\subsection{Allocation and duration are part of the resource model}
+
+The pooled protocol is simple but not universally variance optimal.
+If $v_i=p_i(1-p_i)$ and fixed counts $n_i=nq_i$ are used at the
+nodes, the idealized unrounded variance is
+\begin{equation}
+ \frac{\lambda^2}{n}\sum_i\frac{w_i^2v_i}{q_i}.
+\end{equation}
+Cauchy--Schwarz minimizes it at
+$q_i\propto w_i\sqrt{v_i}$ on nonzero-variance nodes. This is an
+oracle allocation; learning the $p_i$ requires its own data. Equal
+shots have between one and $m$ times that minimal variance for
+$m$ nodes, provided at least one $v_i>0$. Randomizing with
+$q_i=w_i/W$ adds, relative to the same
+fixed allocation, the nonnegative variance
+$\lambda^2W^2\Var_q(p_i)/n$.
+
+A usable confidence-bound design uses certified $U_i$ instead.
+For any positive distribution $q$, one trial has value
+$Y=\lambda w_IX/q_I$, expectation $S$, variance at most
+$\lambda A(q)$, and range at most $\lambda B(q)$, where
+\begin{equation}
+ A(q)=\sum_iw_i^2U_i/q_i,\qquad B(q)=\max_iw_i/q_i.
+\end{equation}
+The same argument as Eq.~\eqref{eq:bernstein} replaces $W(D+\epsilon/3)$
+by $A(q)+\epsilon B(q)/3$. Its minimization is a finite convex
+problem. If all $U_i=0$, then $S=0$ and no sampling is required.
+Otherwise, at fixed $b\ge W$ and constraints $q_i\ge w_i/b$, the
+minimizer has
+\begin{equation}
+ q_i(b)=\max\{w_i/b,\ w_i\sqrt{U_i}/t_b\},\qquad
+                \sum_iq_i(b)=1,                              \label{eq:waterfill}
+\end{equation}
+with the limiting convention when a set of $U_i$ vanishes.
+Minimizing $A(q(b))+\epsilon b/3$ over $b\ge W$ gives the best
+bound of this form, not an optimal quantum sensing theorem.
+The displayed numerical budgets use the simpler pooled design.
+
+Each trial consumes one complete Gibbs preparation, a fresh pure
+ancilla, a controlled pair of branches, and a readout. At the
+256-node design the mean dimensionless duration is
+$2.616668820164279\ldots$, and its maximum is $31.9375$.
+For any fixed $n$, the mean total controlled duration is
+\begin{equation}
+ \mathbb E\mathcal T=n\frac{\hbar r^2}{E_0}\sum_iq_it_i,
+ \qquad\mathcal T\le n\frac{\hbar r^2T}{E_0}.
+\end{equation}
+Preparation, reset, switching, and readout overheads are additional.
+The probability of retaining a state is not a license to omit
+failed trials from either the confidence interval or this cost.
+
+\begin{thebibliography}{99}
+
+\bibitem{Dorner2013}
+R.~Dorner, S.~R.~Clark, L.~Heaney, R.~Fazio, J.~Goold, and V.~Vedral,
+Extracting quantum work statistics and fluctuation theorems by
+single-qubit interferometry,
+\href{https://doi.org/10.1103/PhysRevLett.110.230601}
+{Phys. Rev. Lett. \textbf{110}, 230601 (2013)}.
+
+\bibitem{Mazzola2013}
+L.~Mazzola, G.~De Chiara, and M.~Paternostro,
+Measuring the characteristic function of the work distribution,
+\href{https://doi.org/10.1103/PhysRevLett.110.230602}
+{Phys. Rev. Lett. \textbf{110}, 230602 (2013)}.
+
+\bibitem{Batalhao2014}
+T.~B.~Batalh\~ao, A.~M.~Souza, L.~Mazzola, R.~Auccaise,
+R.~S.~Sarthour, I.~S.~Oliveira, J.~Goold, G.~De Chiara,
+M.~Paternostro, and R.~M.~Serra,
+Experimental reconstruction of work distribution and study of
+fluctuation relations in a closed quantum system,
+\href{https://doi.org/10.1103/PhysRevLett.113.140601}
+{Phys. Rev. Lett. \textbf{113}, 140601 (2014)}.
+
+\bibitem{Nakazato2003}
+H.~Nakazato, T.~Takazawa, and K.~Yuasa,
+Purification through Zeno-like measurements,
+\href{https://doi.org/10.1103/PhysRevLett.90.060401}
+{Phys. Rev. Lett. \textbf{90}, 060401 (2003)}.
+
+\bibitem{Oyarce2019}
+F.~Oyarce and M.~Orszag,
+Photon cooling by dispersive atom-field coupling with atomic postselection,
+\href{https://arxiv.org/abs/1904.03839}{arXiv:1904.03839 (2019)}.
+
+\bibitem{Pushpan2025}
+C.~B.~Pushpan, T.~K.~Konar, A.~Sen(De), and A.~K.~Pal,
+Developing universal logical state-purification strategy for quantum
+error correcting codes,
+\href{https://arxiv.org/abs/2502.01393}{arXiv:2502.01393 (2025)}.
+
+\bibitem{Francica2019}
+G.~Francica, J.~Goold, and F.~Plastina,
+Role of coherence in the nonequilibrium thermodynamics of quantum systems,
+\href{https://doi.org/10.1103/PhysRevE.99.042105}
+{Phys. Rev. E \textbf{99}, 042105 (2019)}.
+
+\bibitem{Varizi2022}
+A.~D.~Varizi, R.~C.~Drumond, and G.~T.~Landi,
+Quantum quench thermodynamics at high temperatures,
+\href{https://doi.org/10.1103/PhysRevA.105.062218}
+{Phys. Rev. A \textbf{105}, 062218 (2022)}.
+
+\bibitem{Smacchia2012}
+P.~Smacchia and A.~Silva,
+Universal energy distribution of quasiparticles emitted in a local
+time-dependent quench,
+\href{https://doi.org/10.1103/PhysRevLett.109.037202}
+{Phys. Rev. Lett. \textbf{109}, 037202 (2012)}.
+
+\bibitem{Knap2012}
+M.~Knap, A.~Shashi, Y.~Nishida, A.~Imambekov, D.~A.~Abanin,
+and E.~Demler,
+Time-dependent impurity in ultracold fermions: Orthogonality catastrophe
+and beyond,
+\href{https://doi.org/10.1103/PhysRevX.2.041020}
+{Phys. Rev. X \textbf{2}, 041020 (2012)}.
+
+\bibitem{Kuttler2014}
+H.~K\"uttler, P.~Otte, and W.~Spitzer,
+Anderson's orthogonality catastrophe for one-dimensional systems,
+\href{https://doi.org/10.1007/s00023-013-0287-z}
+{Ann. Henri Poincar\'e \textbf{15}, 1655--1696 (2014)}.
+\bibitem{Sindona2013}
+A.~Sindona, N.~Lo Gullo, J.~Goold, and F.~Plastina,
+Statistics of the work distribution for a quenched Fermi gas,
+\href{https://arxiv.org/abs/1309.2669}{arXiv:1309.2669 (2013)}.
+
+\bibitem{Guarnieri2024}
+G.~Guarnieri, J.~Eisert, and H.~J.~D.~Miller,
+Generalized linear response theory for the full quantum work statistics,
+\href{https://doi.org/10.1103/PhysRevLett.133.070405}
+{Phys. Rev. Lett. \textbf{133}, 070405 (2024)}.
+
+\bibitem{Ahmad2022}
+S.~Ali Ahmad and A.~R.~H.~Smith,
+Finite-resolution ancilla-assisted measurements of quantum work distributions,
+\href{https://doi.org/10.1103/PhysRevA.105.052411}
+{Phys. Rev. A \textbf{105}, 052411 (2022)}.
+
+\bibitem{Alonso2026}
+D.~Alonso and A.~Ruiz-Garc\'ia,
+Operational relation between one-time and two-time work protocols and
+measurement-resolution-induced transitions in quantum work statistics,
+\href{https://arxiv.org/abs/2607.16951}{arXiv:2607.16951 (2026)}.
+
+\bibitem{Hegerfeldt1998}
+G.~C.~Hegerfeldt,
+Instantaneous spreading and Einstein causality in quantum theory,
+\href{https://doi.org/10.1002/andp.199851007-817}
+{Ann. Phys. (Leipzig) \textbf{7}, 716--725 (1998)};
+\href{https://arxiv.org/abs/quant-ph/9809030}{arXiv:quant-ph/9809030}.
+
+\bibitem{ChandruRareWork}
+R.~Arun Chandru,
+Rare work costs under bounded-action quantum confinement control,
+\href{https://doi.org/10.5281/zenodo.23180314}
+{Zenodo preprint, doi:10.5281/zenodo.23180314 (2026)}.
+
+\bibitem{JohanssonArb}
+F.~Johansson,
+Arb: Efficient arbitrary-precision midpoint-radius interval arithmetic,
+\href{https://arxiv.org/abs/1611.02831}{arXiv:1611.02831 (2016)}.
+
+\bibitem{JohanssonIntegration}
+F.~Johansson,
+Numerical integration in arbitrary-precision ball arithmetic,
+\href{https://arxiv.org/abs/1802.07942}{arXiv:1802.07942 (2018)}.
+
+\bibitem{ClopperPearson}
+C.~J.~Clopper and E.~S.~Pearson,
+The use of confidence or fiducial limits illustrated in the case of the binomial,
+\href{https://doi.org/10.1093/biomet/26.4.404}
+{Biometrika \textbf{26}, 404--413 (1934)}.
+
+\end{thebibliography}
+
+\end{document}
